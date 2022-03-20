@@ -34,6 +34,9 @@ jobs:
             - name: Lint
               run: yarn lint
 
+            - name: Test
+              run: yarn test
+
             - name: Bump version
               run: npm version ${{ github.event.inputs.release-type }}
 
