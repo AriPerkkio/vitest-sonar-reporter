@@ -38,5 +38,5 @@ module.exports = {
             },
         },
     ],
-    ignorePatterns: ['.eslintrc.cjs'],
+    ignorePatterns: ['dist', '.eslintrc.cjs'],
 };
