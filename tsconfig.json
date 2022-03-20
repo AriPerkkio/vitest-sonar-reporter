@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "module": "ES2020",
+        "target": "es6",
+        "moduleResolution": "node",
+        "esModuleInterop": true
+    },
+    "include": ["src", "test"]
+}
