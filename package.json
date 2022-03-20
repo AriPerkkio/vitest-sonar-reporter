@@ -20,7 +20,11 @@
         "prebuild": "rm -rf ./dist",
         "build": "tsc --project tsconfig.prod.json",
         "lint": "eslint . --max-warnings 0 --ext .ts",
-        "validate": "yarn build && yarn lint"
+        "test": "vitest",
+        "validate": "yarn build && yarn lint && yarn test run"
+    },
+    "dependencies": {
+        "pathe": "^0.2.0"
     },
     "devDependencies": {
         "@types/node": "^17.0.21",
