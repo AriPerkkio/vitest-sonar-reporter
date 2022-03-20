@@ -26,6 +26,11 @@ jobs:
                   git config --global user.name 'github-actions'
                   git config --global user.email 'github-actions@users.noreply.github.com'
 
+            - name: Install & Build
+              run: |
+                  yarn install
+                  yarn build
+
             - name: Lint
               run: yarn lint
 
