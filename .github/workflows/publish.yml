@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+    workflow_dispatch:
+        inputs:
+            release-type:
+                type: choice
+                description: Type of the release
+                options:
+                    - patch
+                    - minor
+                    - major
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '16'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Configure github-actions git
+              run: |
+                  git config --global user.name 'github-actions'
+                  git config --global user.email 'github-actions@users.noreply.github.com'
+
+            - name: Bump version
+              run: npm version ${{ github.event.inputs.release-type }}
+
+            - name: Push release tag
+              run: git push origin main --follow-tags
+
+            - name: Publish to npm
+              run: npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
