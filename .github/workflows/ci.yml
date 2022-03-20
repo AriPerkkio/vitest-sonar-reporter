@@ -20,3 +20,6 @@ jobs:
             - uses: ./.github/actions/setup-and-cache
               with:
                   node-version: ${{ matrix.node-version }}
+
+            - name: Lint
+              run: yarn lint
