@@ -1,12 +1,19 @@
 {
-  "name": "vitest-sonar-reporter",
-  "version": "0.0.2",
-  "description": "SonarQube reporter for Vitest",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "repository": "https://github.com/AriPerkkio/vitest-sonar-reporter",
-  "author": "Ari Perkkiö <ari.perkkio@gmail.com>",
-  "license": "MIT"
+    "name": "vitest-sonar-reporter",
+    "version": "0.0.2",
+    "description": "SonarQube reporter for Vitest",
+    "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "repository": "https://github.com/AriPerkkio/vitest-sonar-reporter",
+    "author": "Ari Perkkiö <ari.perkkio@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^2.6.0"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "tabWidth": 4
+    }
 }
