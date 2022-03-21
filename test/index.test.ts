@@ -10,11 +10,15 @@ beforeEach(cleanup);
 test('writes a report', () => {
     expect(existsSync(outputFile)).toBe(false);
 
-    execSync('yarn test --config test/vite.test-config.ts');
+    execSync('yarn test --config test/vite.test-config.ts', {
+        stdio: 'inherit',
+    });
 
     expect(existsSync(outputFile)).toBe(true);
     expect(readFileSync(outputFile, 'utf-8')).toMatchInlineSnapshot(`
       "<testExecutions version=\\"1\\">
+          <file path=\\"test/fixtures/math.test.ts\\">
+          </file>
       </testExecutions>"
     `);
 });
