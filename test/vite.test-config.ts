@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-import SonarReporter from '../src';
+import SonarReporter from '../src/sonar-reporter';
 
 export const outputFile = 'report-from-tests.xml';
 
