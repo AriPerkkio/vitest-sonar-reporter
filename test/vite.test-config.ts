@@ -9,14 +9,6 @@ export default defineConfig({
         watch: false,
         reporters: new SonarReporter(),
         outputFile,
-        exclude: [
-            'test/*.test.ts',
-            // Defaults
-            'node_modules',
-            'dist',
-            '.idea',
-            '.git',
-            '.cache',
-        ],
+        include: ['test/fixtures/*.test.ts'],
     },
 });
