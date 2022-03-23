@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'pathe';
-
-import type { File, Reporter, Vitest } from './types';
+import type { Reporter, File, Vitest } from 'vitest';
 
 export default class SonarReporter implements Reporter {
     ctx!: Vitest;
