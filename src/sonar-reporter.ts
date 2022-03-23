@@ -2,6 +2,8 @@ import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'pathe';
 import type { Reporter, File, Vitest } from 'vitest';
 
+import { generateXml } from './xml.js';
+
 export default class SonarReporter implements Reporter {
     ctx!: Vitest;
 
@@ -33,15 +35,4 @@ export default class SonarReporter implements Reporter {
         writeFileSync(reportFile, generateXml(files), 'utf-8');
         this.ctx.log(`SonarQube report written to ${reportFile}`);
     }
-}
-
-function generateXml(files?: File[]) {
-    // prettier-ignore
-    return `
-<testExecutions version="1">
-    ${files?.map((file) => `
-    <file path="${file.name}">
-    </file>`.trim())}
-</testExecutions>
-    `.trim();
 }

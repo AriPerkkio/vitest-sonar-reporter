@@ -19,6 +19,7 @@
     "scripts": {
         "prebuild": "rm -rf ./dist",
         "build": "tsc --project tsconfig.prod.json",
+        "start": "vitest --update",
         "lint": "eslint . --max-warnings 0 --ext .ts",
         "test": "vitest",
         "validate": "yarn build && yarn lint && yarn test run"
