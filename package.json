@@ -43,6 +43,12 @@
     "peerDependencies": {
         "vitest": ">=0.7"
     },
+    "keywords": [
+        "vitest",
+        "vitest-reporter",
+        "sonar",
+        "sonarqube"
+    ],
     "prettier": {
         "singleQuote": true,
         "tabWidth": 4
