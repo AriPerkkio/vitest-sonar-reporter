@@ -45,7 +45,8 @@ test('writes a report', () => {
             </failure>
           </testCase>
           <testCase name=\\"animals - flying ones - bird can fly\\" duration=\\"123\\" />
-        </file>  <file path=\\"test/fixtures/math.test.ts\\">
+        </file>
+        <file path=\\"test/fixtures/math.test.ts\\">
           <testCase name=\\"math - sum\\" duration=\\"123\\" />
           <testCase name=\\"math - multiply\\" duration=\\"123\\" />
           <testCase name=\\"math - slow calculation\\" duration=\\"123\\" />

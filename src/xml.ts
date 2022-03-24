@@ -26,7 +26,7 @@ export function generateXml(files?: File[]) {
     return join(
         '<testExecutions version="1">',
         NEWLINE,
-        ...(files?.map(generateFileElement) || []),
+        ...(files?.map(generateFileElement).join(NEWLINE) || []),
         NEWLINE,
         '</testExecutions>'
     );
