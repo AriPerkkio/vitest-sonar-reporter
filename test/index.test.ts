@@ -49,7 +49,7 @@ test('writes a report', () => {
           <testCase name=\\"math - sum\\" duration=\\"123\\" />
           <testCase name=\\"math - multiply\\" duration=\\"123\\" />
           <testCase name=\\"math - slow calculation\\" duration=\\"123\\" />
-          <testCase name=\\"math - tricky calculation\\" duration=\\"123\\">
+          <testCase name=\\"math - tricky calculation of &quot;16 / 4&quot;\\" duration=\\"123\\">
             <failure message=\\"expected 4 to deeply equal 8\\">
               <![CDATA[AssertionError: expected 4 to deeply equal 8
           at <process-cwd>/test/fixtures/math.test.ts:15:42

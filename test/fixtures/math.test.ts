@@ -15,7 +15,7 @@ describe('math', () => {
         expect(1).toBe(1);
     });
 
-    test('tricky calculation', () => {
+    test('tricky calculation of "16 / 4"', () => {
         expect(16 / 4).toEqual(8);
     });
 
