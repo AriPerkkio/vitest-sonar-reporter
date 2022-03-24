@@ -9,6 +9,9 @@ export default defineConfig({
         watch: false,
         reporters: new SonarReporter(),
         outputFile,
-        include: ['test/fixtures/*.test.ts'],
+        include: [
+            'test/fixtures/animals.test.ts',
+            'test/fixtures/math.test.ts',
+        ],
     },
 });
