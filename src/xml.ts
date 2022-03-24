@@ -1,7 +1,3 @@
-/*
- * TODO: Sanitize XML attributes
- */
-
 import type { File, Task, Test } from 'vitest';
 
 const NEWLINE = '\n';
@@ -39,7 +35,7 @@ export function generateXml(files?: File[]) {
 function generateFileElement(file: File) {
     return join(
         indent(1),
-        `<file path="${file.name}">`,
+        `<file path="${escapeXML(file.name)}">`,
         NEWLINE,
         generateTestCases(file),
         NEWLINE,
@@ -58,7 +54,7 @@ function generateTestCaseElement(test: Test) {
     const start = join(
         indent(2),
         '<testCase ',
-        `name="${generateTestCaseName(test)}"`,
+        `name="${escapeXML(generateTestCaseName(test))}"`,
         getDurationAttribute(test)
     );
 
@@ -71,10 +67,10 @@ function generateTestCaseElement(test: Test) {
             '>',
             NEWLINE,
             indent(3),
-            `<${element} message="${test.result.error?.message}">`,
+            `<${element} message="${escapeXML(test.result.error?.message)}">`,
             NEWLINE,
             indent(4),
-            `<![CDATA[${test.result.error?.stack}]]>`,
+            `<![CDATA[${escapeXML(test.result.error?.stack)}]]>`,
             NEWLINE,
             indent(3),
             `</${element}>`,
@@ -96,7 +92,7 @@ function generateTestCaseElement(test: Test) {
             '>',
             NEWLINE,
             indent(3),
-            `<skipped message="${test.name}" />`,
+            `<skipped message="${escapeXML(test.name)}" />`,
             NEWLINE,
             indent(2),
             '</testCase>'
@@ -140,4 +136,13 @@ function join(...lines: (string | undefined)[]) {
 
 function indent(level: number) {
     return '  '.repeat(level);
+}
+
+function escapeXML(value: any): string {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 }
