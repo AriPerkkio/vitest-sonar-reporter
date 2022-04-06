@@ -92,3 +92,23 @@ describe('animals', () => {
   </file>
 </testExecutions>
 ```
+
+## Troubleshooting
+
+1. > I'm seeing `Error [ERR_REQUIRE_ESM]: require() of ES Module` when importing the module. I cannot add `"type": "module"` to my `package.json`.
+
+This package is published as pure ESM package. It can still be used in commonjs projects by using [dynamic import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports). See [Vite | Async Config](https://vitejs.dev/config/#async-config) for Vite's configuration options.
+
+```ts
+// vite.config.ts
+export default defineConfig(async function () {
+    const { default: SonarReporter } = await import('vitest-sonar-reporter');
+
+    return {
+        test: {
+            reporters: new SonarReporter(),
+            outputFile: 'sonar-report.xml',
+        },
+    };
+});
+```
