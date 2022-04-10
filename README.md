@@ -16,7 +16,7 @@ yarn add --dev vitest-sonar-reporter
 
 ## Configuration
 
-Add new custom reporter and defined `outputFile` in your [`vite.config.ts`](https://vitest.dev/config/):
+Add new custom reporter and define `outputFile` in your [`vite.config.ts`](https://vitest.dev/config/):
 
 ```ts
 import { defineConfig } from 'vitest/config';
@@ -28,6 +28,18 @@ export default defineConfig({
         outputFile: 'sonar-report.xml',
     },
 });
+```
+
+If you have multiple outputFile's defined, add one for `vitest-sonar-reporter`:
+
+```ts
+test: {
+    reporters: ['json', 'verbose', new SonarReporter()],
+    outputFile: {
+        json: 'my-json-report.json',
+        'vitest-sonar-reporter': 'sonar-report.xml',
+    },
+},
 ```
 
 Instruct SonarQube to pick report in your [`sonar-project.properties`](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/):
