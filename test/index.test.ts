@@ -33,7 +33,7 @@ test('writes a report', () => {
             <failure message=\\"expected false to be true // Object.is equality\\">
               <![CDATA[AssertionError: expected false to be true // Object.is equality
           at <process-cwd>/test/fixtures/animals.test.ts:15:47
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.7032872a.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.e17b859e.js
           at runTest (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
@@ -54,7 +54,7 @@ test('writes a report', () => {
             <failure message=\\"expected 4 to deeply equal 8\\">
               <![CDATA[AssertionError: expected 4 to deeply equal 8
           at <process-cwd>/test/fixtures/math.test.ts:15:42
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.7032872a.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.e17b859e.js
           at runTest (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
@@ -69,7 +69,7 @@ test('writes a report', () => {
             <error message=\\"16.divideByTwo is not a function\\">
               <![CDATA[TypeError: 16.divideByTwo is not a function
           at <process-cwd>/test/fixtures/math.test.ts:18:38
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.7032872a.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.e17b859e.js
           at runTest (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
           at async runSuite (<process-cwd>/node_modules/vitest/dist/entry.js)
