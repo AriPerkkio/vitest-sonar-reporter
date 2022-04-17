@@ -1,5 +1,7 @@
 import type { File, Task, Test } from 'vitest';
 
+import { escapeXML } from './xml-escape.js';
+
 const NEWLINE = '\n';
 
 /**
@@ -136,13 +138,4 @@ function join(...lines: (string | undefined)[]) {
 
 function indent(level: number) {
     return '  '.repeat(level);
-}
-
-function escapeXML(value: any): string {
-    return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&apos;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
 }
