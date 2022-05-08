@@ -41,7 +41,7 @@
         "vitest": "^0.11.0"
     },
     "peerDependencies": {
-        "vitest": ">=0.9.1"
+        "vitest": ">=0.11.0"
     },
     "keywords": [
         "vitest",

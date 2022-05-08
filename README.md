@@ -20,11 +20,10 @@ Add new custom reporter and define `outputFile` in your [`vite.config.ts`](https
 
 ```ts
 import { defineConfig } from 'vitest/config';
-import SonarReporter from 'vitest-sonar-reporter';
 
 export default defineConfig({
     test: {
-        reporters: new SonarReporter(),
+        reporters: 'vitest-sonar-reporter',
         outputFile: 'sonar-report.xml',
     },
 });
@@ -34,7 +33,7 @@ If you have multiple outputFile's defined, add one for `vitest-sonar-reporter`:
 
 ```ts
 test: {
-    reporters: ['json', 'verbose', new SonarReporter()],
+    reporters: ['json', 'verbose', 'vitest-sonar-reporter'],
     outputFile: {
         json: 'my-json-report.json',
         'vitest-sonar-reporter': 'sonar-report.xml',
