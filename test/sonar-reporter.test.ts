@@ -42,15 +42,15 @@ test('throws when outputFile object is missing entry', () => {
     expect(() =>
         reporter.onInit(getConfig({ outputFile: { json: 'json-report.json' } }))
     ).toThrowErrorMatchingInlineSnapshot(`
-"Unable to resolve outputFile for vitest-sonar-reporter.
-Define outputFile as string or add entry for it:
-{
-  \\"test\\": {
-    \\"outputFile\\": {
-      \\"vitest-sonar-reporter\\": \\"sonar-report.xml\\"
-    }
-  }
-}"
+      "Unable to resolve outputFile for vitest-sonar-reporter.
+      Define outputFile as string or add entry for it:
+      {
+        \\"test\\": {
+          \\"outputFile\\": {
+            \\"vitest-sonar-reporter\\": \\"sonar-report.xml\\"
+          }
+        }
+      }"
     `);
 });
 
