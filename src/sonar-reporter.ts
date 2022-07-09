@@ -5,20 +5,7 @@ import type { Reporter, File, Vitest } from 'vitest';
 import { generateXml } from './xml.js';
 
 /**
- * Define this reporter in your `vite.config.ts`:
- *
- * ```ts
- * import { defineConfig } from 'vitest/config';
- * import SonarReporter from 'vitest-sonar-reporter';
- *
- * export default defineConfig({
- *     test: {
- *         reporters: new SonarReporter(),
- *         outputFile: 'sonar-report.xml',
- *     },
- * });
- * ```
- *
+ * Reporter used by `vitest`
  */
 export default class SonarReporter implements Reporter {
     ctx!: Vitest;
