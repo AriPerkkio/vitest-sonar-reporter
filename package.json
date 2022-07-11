@@ -38,10 +38,10 @@
         "prettier": "^2.6.0",
         "typescript": "^4.6.2",
         "vite": "^2.9.14",
-        "vitest": "^0.17.1"
+        "vitest": "^0.18.0"
     },
     "peerDependencies": {
-        "vitest": ">=0.11.0"
+        "vitest": ">=0.18.0"
     },
     "keywords": [
         "vitest",

@@ -36,7 +36,7 @@ export default class SonarReporter implements Reporter {
         }
 
         writeFileSync(reportFile, generateXml(files), 'utf-8');
-        this.ctx.log(`SonarQube report written to ${reportFile}`);
+        this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
     }
 }
 
