@@ -34,15 +34,15 @@ test('writes a report', () => {
             <failure message=\\"expected false to be true // Object.is equality\\">
               <![CDATA[AssertionError: expected false to be true // Object.is equality
           at <process-cwd>/test/fixtures/animals.test.ts:15:47
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1938:36
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1826:26
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:487:40)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:610:5)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:617:3)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:661:9]]>
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js]]>
             </failure>
           </testCase>
           <testCase name=\\"animals - flying ones - bird can fly\\" duration=\\"123\\" />
@@ -55,30 +55,30 @@ test('writes a report', () => {
             <failure message=\\"expected 4 to deeply equal 8\\">
               <![CDATA[AssertionError: expected 4 to deeply equal 8
           at <process-cwd>/test/fixtures/math.test.ts:15:42
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1938:36
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1826:26
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:487:40)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:610:5)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:617:3)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:661:9
-          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:171:5)]]>
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js
+          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)]]>
             </failure>
           </testCase>
           <testCase name=\\"math - complex calculation\\" duration=\\"123\\">
             <error message=\\"16.divideByTwo is not a function\\">
               <![CDATA[TypeError: 16.divideByTwo is not a function
           at <process-cwd>/test/fixtures/math.test.ts:18:38
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1938:36
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.mjs:1826:26
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:487:40)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:570:13)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:610:5)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:617:3)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:661:9
-          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:171:5)]]>
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
+          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
+          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js
+          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)]]>
             </error>
           </testCase>
           <testCase name=\\"math - random numbers are unstable\\" duration=\\"123\\">
@@ -109,5 +109,5 @@ function removeCwd(report: string) {
 }
 
 function removeLineNumbers(report: string) {
-    return report.replace(/\.js:\d*:\d*/g, '.js');
+    return report.replace(/\.[m]js:\d*:\d*/g, '.js');
 }
