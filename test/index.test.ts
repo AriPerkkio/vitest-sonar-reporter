@@ -10,7 +10,8 @@ test('writes a report', () => {
     expect(existsSync(outputFile)).toBe(false);
 
     try {
-        execSync('yarn test --config test/vite.test-config.ts', {
+        // "vitest" binary should be available when run through package.json script
+        execSync('vitest --config test/vite.test-config.ts', {
             stdio: 'inherit',
         });
     } catch (_) {
