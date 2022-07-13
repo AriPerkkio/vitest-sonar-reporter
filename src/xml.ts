@@ -117,7 +117,7 @@ function getAllTests(task: Task): Test[] {
 function getDurationAttribute(test: Test): string {
     const duration = test.result?.duration;
 
-    if (typeof duration !== "number") {
+    if (typeof duration !== 'number') {
         return ` duration="0"`;
     }
 
