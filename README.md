@@ -2,6 +2,8 @@
 
 [![version](https://img.shields.io/npm/v/vitest-sonar-reporter)](https://www.npmjs.com/package/vitest-sonar-reporter)
 
+[Installation](#installation) | [Configuration](#configuration) | [Examples](#examples) | [Troubleshooting](#troubleshooting)
+
 > [SonarQube](https://docs.sonarqube.org/) reporter for [Vitest](https://vitest.dev/)
 
 Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic-test/#header-2) reports from `vitest` tests for SonarQube to analyze.
@@ -81,7 +83,7 @@ describe('animals', () => {
 <testExecutions version="1">
   <file path="test/animals.test.ts">
     <testCase name="animals - dogs say woof" duration="2" />
-    <testCase name="animals - figure out what rabbits say">
+    <testCase name="animals - figure out what rabbits say" duration="0">
       <skipped message="figure out what rabbits say" />
     </testCase>
     <testCase name="animals - flying ones - cats can fly" duration="4">
