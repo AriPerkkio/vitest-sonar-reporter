@@ -26,7 +26,7 @@ test('writes a report', () => {
       "<testExecutions version=\\"1\\">
         <file path=\\"test/fixtures/animals.test.ts\\">
           <testCase name=\\"animals - dogs say woof\\" duration=\\"123\\" />
-          <testCase name=\\"animals - figure out what rabbits say\\">
+          <testCase name=\\"animals - figure out what rabbits say\\" duration=\\"123\\">
             <skipped message=\\"figure out what rabbits say\\" />
           </testCase>
           <testCase name=\\"animals - flying ones - cat can fly\\" duration=\\"123\\">
@@ -80,10 +80,10 @@ test('writes a report', () => {
           at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.mjs:171:5)]]>
             </error>
           </testCase>
-          <testCase name=\\"math - random numbers are unstable\\">
+          <testCase name=\\"math - random numbers are unstable\\" duration=\\"123\\">
             <skipped message=\\"random numbers are unstable\\" />
           </testCase>
-          <testCase name=\\"math - learn square roots\\">
+          <testCase name=\\"math - learn square roots\\" duration=\\"123\\">
             <skipped message=\\"learn square roots\\" />
           </testCase>
           <testCase name=\\"math - divide - basic\\" duration=\\"123\\" />
