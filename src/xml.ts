@@ -115,10 +115,10 @@ function getAllTests(task: Task): Test[] {
 }
 
 function getDurationAttribute(test: Test): string {
-    const duration = test.result?.duration;
+    const duration = test.result?.duration ?? test.file?.result?.duration;
 
-    if (typeof duration !== 'number') {
-        return '';
+    if (typeof duration !== "number") {
+        return ` duration="0"`;
     }
 
     return ` duration="${Math.round(duration)}"`;
