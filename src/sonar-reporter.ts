@@ -35,7 +35,9 @@ export default class SonarReporter implements Reporter {
             mkdirSync(outputDirectory, { recursive: true });
         }
 
-        writeFileSync(reportFile, generateXml(files), 'utf-8');
+        const sorted = files?.sort(sortByFilename);
+
+        writeFileSync(reportFile, generateXml(sorted), 'utf-8');
         this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
     }
 }
@@ -66,4 +68,11 @@ function resolveOutputfile(config: Vitest['config']) {
             ),
         ].join('\n')
     );
+}
+
+function sortByFilename(a: File, b: File): -1 | 0 | 1 {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+
+    return 0;
 }
