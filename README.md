@@ -1,6 +1,7 @@
 # vitest-sonar-reporter
 
-[![version](https://img.shields.io/npm/v/vitest-sonar-reporter)](https://www.npmjs.com/package/vitest-sonar-reporter)
+[![Version][version-badge]][version-url]
+[![Compatibility with vitest@latest][vitest-check-badge]][vitest-check-url]
 
 [Installation](#installation) | [Configuration](#configuration) | [Examples](#examples) | [Troubleshooting](#troubleshooting)
 
@@ -125,3 +126,8 @@ export default defineConfig(async function () {
     };
 });
 ```
+
+[version-badge]: https://img.shields.io/npm/v/vitest-sonar-reporter
+[version-url]: https://www.npmjs.com/package/vitest-sonar-reporter
+[vitest-check-badge]: https://github.com/ariperkkio/vitest-sonar-reporter/workflows/vitest%40latest+compatibility/badge.svg
+[vitest-check-url]: https://github.com/AriPerkkio/vitest-sonar-reporter/actions?query=vitest%40latest+compatibility
