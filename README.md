@@ -129,5 +129,5 @@ export default defineConfig(async function () {
 
 [version-badge]: https://img.shields.io/npm/v/vitest-sonar-reporter
 [version-url]: https://www.npmjs.com/package/vitest-sonar-reporter
-[vitest-check-badge]: https://github.com/ariperkkio/vitest-sonar-reporter/workflows/vitest%40latest+compatibility/badge.svg
-[vitest-check-url]: https://github.com/AriPerkkio/vitest-sonar-reporter/actions?query=vitest%40latest+compatibility
+[vitest-check-badge]: https://github.com/ariperkkio/vitest-sonar-reporter/workflows/vitest@latest%20compatibility/badge.svg
+[vitest-check-url]: https://github.com/AriPerkkio/vitest-sonar-reporter/actions/workflows/vitest-latest-compatibility.yml
