@@ -1,0 +1,34 @@
+name: vitest@latest compatibility
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch: # Manual triggers
+    schedule:
+        # Every night at 00:00
+        - cron: '0 0 * * *'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: ./.github/actions/setup-and-cache
+
+            - name: Install
+              run: yarn install
+
+            - name: Install vitest@latest
+              run: yarn add --dev vitest@latest
+
+            - name: Build
+              run: yarn build
+
+            - name: Lint
+              run: yarn lint
+
+            - name: Test
+              run: yarn test
