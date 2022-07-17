@@ -21,7 +21,12 @@ test('writes a report', () => {
     expect(existsSync(outputFile)).toBe(true);
 
     const contents = readFileSync(outputFile, 'utf-8');
-    const stable = removeCwd(removeLineNumbers(removeDurations(contents)));
+    const stable = compose(
+        limitStacktraces,
+        removeCwd,
+        removeLineNumbers,
+        removeDurations
+    )(contents);
 
     expect(stable).toMatchInlineSnapshot(`
       "<testExecutions version=\\"1\\">
@@ -33,16 +38,8 @@ test('writes a report', () => {
           <testCase name=\\"animals - flying ones - cat can fly\\" duration=\\"123\\">
             <failure message=\\"expected false to be true // Object.is equality\\">
               <![CDATA[AssertionError: expected false to be true // Object.is equality
-          at <process-cwd>/test/fixtures/animals.test.ts:15:47
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js]]>
+          at <process-cwd>/test/fixtures/animals.test.js
+          <removed-stacktrace>
             </failure>
           </testCase>
           <testCase name=\\"animals - flying ones - bird can fly\\" duration=\\"123\\" />
@@ -54,31 +51,15 @@ test('writes a report', () => {
           <testCase name=\\"math - tricky calculation of &quot;16 / 4&quot;\\" duration=\\"123\\">
             <failure message=\\"expected 4 to deeply equal 8\\">
               <![CDATA[AssertionError: expected 4 to deeply equal 8
-          at <process-cwd>/test/fixtures/math.test.ts:15:42
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js
-          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)]]>
+          at <process-cwd>/test/fixtures/math.test.js
+          <removed-stacktrace>
             </failure>
           </testCase>
           <testCase name=\\"math - complex calculation\\" duration=\\"123\\">
             <error message=\\"16.divideByTwo is not a function\\">
               <![CDATA[TypeError: 16.divideByTwo is not a function
-          at <process-cwd>/test/fixtures/math.test.ts:18:38
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at <process-cwd>/node_modules/vitest/dist/chunk-runtime-chain.eb764dff.js
-          at runTest (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runSuite (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async runFiles (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async startTests (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)
-          at async <process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js
-          at async withEnv (<process-cwd>/node_modules/vitest/dist/vendor-entry.78de67ab.js)]]>
+          at <process-cwd>/test/fixtures/math.test.js
+          <removed-stacktrace>
             </error>
           </testCase>
           <testCase name=\\"math - random numbers are unstable\\" duration=\\"123\\">
@@ -109,5 +90,30 @@ function removeCwd(report: string) {
 }
 
 function removeLineNumbers(report: string) {
-    return report.replace(/\.[m]js:\d*:\d*/g, '.js');
+    return report.replace(/\.[mj|j|t]s:\d*:\d*/g, '.js');
+}
+
+function limitStacktraces(report: string) {
+    return report.replace(
+        /<(failure|error).*>(\S|\s)*?<\/(failure|error)>/g,
+        (stacktrace) => {
+            const rows = stacktrace.split('\n');
+            const padding = rows[2].match(/\s*/)?.pop();
+
+            return rows
+                .slice(0, 3)
+                .concat(`${padding}<removed-stacktrace>`)
+                .concat(rows[rows.length - 1])
+                .join('\n');
+        }
+    );
+}
+
+function compose(
+    ...fns: ((text: string) => string)[]
+): (text: string) => string {
+    return fns.reduceRight(
+        (prevFn, nextFn) => (text: string) => nextFn(prevFn(text)),
+        (value) => value
+    );
 }
