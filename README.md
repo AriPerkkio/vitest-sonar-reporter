@@ -5,6 +5,8 @@
 
 [Installation](#installation) | [Configuration](#configuration) | [Examples](#examples) | [Troubleshooting](#troubleshooting)
 
+---
+
 > [SonarQube](https://docs.sonarqube.org/) reporter for [Vitest](https://vitest.dev/)
 
 Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic-test/#header-2) reports from `vitest` tests for SonarQube to analyze.
