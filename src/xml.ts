@@ -107,6 +107,10 @@ function generateTestCaseElement(test: Test) {
 function getAllTests(task: Task): Test[] {
     const tests: Test[] = [];
 
+    if (task.type === 'benchmark') {
+        return tests;
+    }
+
     if (task.type === 'test') {
         return [...tests, task];
     }
