@@ -1,6 +1,6 @@
 {
     "name": "vitest-sonar-reporter",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "SonarQube reporter for Vitest",
     "author": "Ari Perkkiö <ari.perkkio@gmail.com>",
     "license": "MIT",
