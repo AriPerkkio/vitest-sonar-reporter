@@ -16,15 +16,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
             - uses: actions/setup-node@v3
               with:
                   node-version: '16'
                   registry-url: 'https://registry.npmjs.org'
-
-            - name: Configure github-actions git
-              run: |
-                  git config --global user.name 'github-actions'
-                  git config --global user.email 'github-actions@users.noreply.github.com'
 
             - name: Install & Build
               run: |
@@ -37,8 +35,19 @@ jobs:
             - name: Test
               run: yarn test
 
+            - name: Configure github-actions git
+              run: |
+                  git config --global user.name 'github-actions'
+                  git config --global user.email 'github-actions@users.noreply.github.com'
+
             - name: Bump version
               run: npm version ${{ github.event.inputs.release-type }}
+
+            - name: Generate changelog
+              run: |
+                  yarn changelog
+                  git add CHANGELOG.md
+                  git commit -m 'chore: changelog'
 
             - name: Push release tag
               run: git push origin main --follow-tags

@@ -17,6 +17,7 @@
     "bugs": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "repository": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "scripts": {
+        "changelog": "npx conventional-changelog-cli -i CHANGELOG.md -p conventionalcommits -s -r 0",
         "prebuild": "rm -rf ./dist",
         "build": "tsc --project tsconfig.prod.json",
         "start": "vitest --update",
