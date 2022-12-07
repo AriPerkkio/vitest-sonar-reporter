@@ -1,3 +1,7 @@
 node_modules
 dist
 report-from-tests.xml
+examples/**/.gitignore
+examples/**/pnpm-lock.yaml
+examples/**/sonar-report.xml
+build.tgz
