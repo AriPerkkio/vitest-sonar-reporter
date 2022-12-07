@@ -25,7 +25,7 @@ jobs:
               run: pnpm install
 
             - name: Install vitest@latest
-              run: pnpm add --dev vitest@latest
+              run: pnpm install --save-dev vitest@latest
 
             - name: Build
               run: pnpm build
