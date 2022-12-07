@@ -19,6 +19,9 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+
             - uses: actions/setup-node@v3
               with:
                   node-version: '16'
@@ -26,14 +29,14 @@ jobs:
 
             - name: Install & Build
               run: |
-                  yarn install
-                  yarn build
+                  pnpm install
+                  pnpm build
 
             - name: Lint
-              run: yarn lint
+              run: pnpm lint
 
             - name: Test
-              run: yarn test
+              run: pnpm test
 
             - name: Configure github-actions git
               run: |
@@ -45,7 +48,7 @@ jobs:
 
             - name: Generate changelog
               run: |
-                  yarn changelog
+                  pnpm changelog
                   git add CHANGELOG.md
                   git commit -m 'chore: changelog'
 

@@ -16,19 +16,22 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+
             - uses: ./.github/actions/setup-and-cache
 
             - name: Install
-              run: yarn install
+              run: pnpm install
 
             - name: Install vitest@latest
-              run: yarn add --dev vitest@latest
+              run: pnpm add --dev vitest@latest
 
             - name: Build
-              run: yarn build
+              run: pnpm build
 
             - name: Lint
-              run: yarn lint
+              run: pnpm lint
 
             - name: Test
-              run: yarn test
+              run: pnpm test

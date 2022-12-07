@@ -15,8 +15,8 @@ Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic
 
 `vitest-sonar-reporter` should be included in development dependencies. `vitest` is required as peer dependency.
 
-```
-yarn add --dev vitest-sonar-reporter
+```sh
+npm install --save-dev vitest-sonar-reporter
 ```
 
 ## Configuration
