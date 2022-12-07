@@ -1,0 +1,13 @@
+{
+    "name": "example-basic",
+    "private": true,
+    "scripts": {
+        "test": "vitest run && vitest run --config vitest.config.report.ts"
+    },
+    "devDependencies": {
+        "typescript": "latest",
+        "vite": "^3",
+        "vitest": "latest",
+        "vitest-sonar-reporter": "file:../../build.tgz"
+    }
+}

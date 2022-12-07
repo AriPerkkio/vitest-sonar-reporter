@@ -12,8 +12,9 @@ jobs:
         runs-on: ubuntu-latest
 
         strategy:
+            fail-fast: false
             matrix:
-                node-version: [14, 16]
+                node-version: [14, 16, 18]
 
         steps:
             - uses: actions/checkout@v3
@@ -35,3 +36,23 @@ jobs:
 
             - name: Test
               run: pnpm test
+
+            - uses: ./.github/actions/prepare-example
+
+    examples:
+        needs: build
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                node-version: [14, 16, 18]
+                example-name: [example-basic]
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: ./.github/actions/run-example
+              with:
+                  example-name: ${{ matrix.example-name }}
+                  node-version: ${{ matrix.node-version }}

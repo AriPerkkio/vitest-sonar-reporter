@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import { existsSync, readFileSync, rmSync } from 'fs';
 import { beforeEach, expect, test } from 'vitest';
+import { stabilizeReport } from './utils';
 
 import { outputFile } from './vite.test-config';
 
@@ -21,12 +22,7 @@ test('writes a report', () => {
     expect(existsSync(outputFile)).toBe(true);
 
     const contents = readFileSync(outputFile, 'utf-8');
-    const stable = compose(
-        limitStacktraces,
-        removeCwd,
-        removeLineNumbers,
-        removeDurations
-    )(contents);
+    const stable = stabilizeReport(contents);
 
     expect(stable).toMatchInlineSnapshot(`
       "<testExecutions version=\\"1\\">
@@ -79,41 +75,4 @@ function cleanup() {
     if (existsSync(outputFile)) {
         rmSync(outputFile);
     }
-}
-
-function removeDurations(report: string) {
-    return report.replace(/duration="\d*"/g, 'duration="123"');
-}
-
-function removeCwd(report: string) {
-    return report.replace(new RegExp(process.cwd(), 'g'), '<process-cwd>');
-}
-
-function removeLineNumbers(report: string) {
-    return report.replace(/\.[mj|j|t]s:\d*:\d*/g, '.js');
-}
-
-function limitStacktraces(report: string) {
-    return report.replace(
-        /<(failure|error).*>(\S|\s)*?<\/(failure|error)>/g,
-        (stacktrace) => {
-            const rows = stacktrace.split('\n');
-            const padding = rows[2].match(/\s*/)?.pop();
-
-            return rows
-                .slice(0, 3)
-                .concat(`${padding}<removed-stacktrace>`)
-                .concat(rows[rows.length - 1])
-                .join('\n');
-        }
-    );
-}
-
-function compose(
-    ...fns: ((text: string) => string)[]
-): (text: string) => string {
-    return fns.reduceRight(
-        (prevFn, nextFn) => (text: string) => nextFn(prevFn(text)),
-        (value) => value
-    );
 }
