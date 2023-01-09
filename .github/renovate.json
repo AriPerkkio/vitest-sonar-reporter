@@ -2,6 +2,7 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": ["schedule:weekly"],
     "labels": ["dependencies"],
+    "ignorePaths": ["**/examples/**"],
     "rangeStrategy": "bump",
     "packageRules": [
         {
@@ -23,11 +24,6 @@
         {
             "depTypeList": ["peerDependencies", "engines"],
             "enabled": false
-        },
-        {
-            "matchPackageNames": ["vitest-sonar-reporter"],
-            "enabled": false,
-            "description": "Local file links in examples"
         }
     ]
 }
