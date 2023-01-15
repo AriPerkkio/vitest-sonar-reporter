@@ -22,7 +22,7 @@
         "prebuild": "rm -rf ./dist",
         "build": "tsc --project tsconfig.prod.json",
         "start": "vitest --update",
-        "lint": "eslint . --max-warnings 0 --ext .ts",
+        "lint": "eslint . --max-warnings 0 --ext .ts && publint",
         "test": "vitest",
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
@@ -38,6 +38,7 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^4.2.1",
         "prettier": "^2.8.2",
+        "publint": "^0.1.8",
         "typescript": "^4.9.4",
         "vite": "^4.0.4",
         "vitest": "^0.27.0"
