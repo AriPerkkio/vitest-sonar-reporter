@@ -24,6 +24,16 @@
         {
             "depTypeList": ["peerDependencies", "engines"],
             "enabled": false
+        },
+        {
+            "matchPackageNames": ["vitest-sonar-reporter"],
+            "enabled": false,
+            "description": "Local file links in examples"
+        },
+        {
+            "matchPaths": ["**/examples/**"],
+            "enabled": false,
+            "description": "Exclude examples"
         }
     ]
 }
