@@ -19,11 +19,13 @@ runs:
           with:
               node-version: ${{ inputs.node-version }}
 
-        - uses: actions/download-artifact@v3
-          with:
-              name: built-package
+        - name: Install & Build
+          shell: bash
+          run: |
+              pnpm install
+              pnpm build
 
-        - name: Build and test ${{ inputs.example-name }}
+        - name: Run ${{ inputs.example-name }}
           working-directory: ./examples/${{ inputs.example-name }}
           shell: bash
           run: |

@@ -37,8 +37,6 @@ jobs:
             - name: Test
               run: pnpm test
 
-            - uses: ./.github/actions/prepare-example
-
     examples:
         needs: build
         runs-on: ubuntu-latest

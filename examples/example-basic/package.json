@@ -8,6 +8,6 @@
         "typescript": "latest",
         "vite": "^3",
         "vitest": "latest",
-        "vitest-sonar-reporter": "file:../../build.tgz"
+        "vitest-sonar-reporter": "file:../../"
     }
 }
