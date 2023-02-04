@@ -27,7 +27,7 @@
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
     "dependencies": {
-        "pathe": "^0.2.0"
+        "pathe": "^1.1.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",
