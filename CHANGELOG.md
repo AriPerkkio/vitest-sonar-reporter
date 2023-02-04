@@ -1,3 +1,13 @@
+### [0.3.4](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.3...v0.3.4) (2023-02-04)
+
+
+### Bug Fixes
+
+* match pathe version with vitest ([9f885d4](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/9f885d44977ebcf7c4e17198ee38006f2ca85789))
+* remove benchmark task filtering ([976abd3](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/976abd3482e73664f228e9b82441efaa0a55eec3))
+* remove typecheck tasks ([646187d](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/646187d7a798699a15be5036a2d00a22e0689f92))
+* upgrade `pathe` major to match `vitest`'s version ([9e2a645](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/9e2a645b2fa81dbae3fe702575c4d36fcaefc555))
+
 ### [0.3.3](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.2...v0.3.3) (2022-11-08)
 
 
