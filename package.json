@@ -26,9 +26,6 @@
         "test": "vitest",
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
-    "dependencies": {
-        "pathe": "^1.1.0"
-    },
     "devDependencies": {
         "@types/node": "^18.13.0",
         "@typescript-eslint/eslint-plugin": "^5.52.0",

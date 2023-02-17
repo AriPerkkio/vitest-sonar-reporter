@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
-import { dirname, resolve } from 'pathe';
+import { dirname, resolve } from 'path';
 import type { Reporter, File, Vitest } from 'vitest';
 
 import { generateXml } from './xml.js';
