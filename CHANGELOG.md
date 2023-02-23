@@ -1,3 +1,10 @@
+### [0.3.5](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.4...v0.3.5) (2023-02-23)
+
+
+### Bug Fixes
+
+* remove unnecessary pathe dependency ([51d4897](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/51d4897ddbd80d395edae5609757571eb24f012c))
+
 ### [0.3.4](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.3...v0.3.4) (2023-02-04)
 
 
