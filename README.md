@@ -3,13 +3,18 @@
 [![Version][version-badge]][version-url]
 [![Compatibility with vitest@latest][vitest-check-badge]][vitest-check-url]
 
-[Installation](#installation) | [Configuration](#configuration) | [Examples](#examples) | [Troubleshooting](#troubleshooting)
+[Live examples](#live-examples) | [Installation](#installation) | [Configuration](#configuration) | [Code coverage](#code-coverage) | [Examples](#examples)
 
 ---
 
 > [SonarQube](https://docs.sonarqube.org/) reporter for [Vitest](https://vitest.dev/)
 
 Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic-test/#header-2) reports from `vitest` tests for SonarQube to analyze.
+
+## Live examples
+
+-   Project with `{ type: "module" }` | [Stackblitz](https://stackblitz.com/edit/vitest-dev-vitest-vrnysd)
+-   Project with `{ type: "commonjs" }` | [Stackblitz](https://stackblitz.com/edit/vitest-dev-vitest-rdjupe)
 
 ## Installation
 
@@ -50,6 +55,27 @@ Instruct SonarQube to pick report in your [`sonar-project.properties`](https://d
 
 ```
 sonar.testExecutionReportPaths=sonar-report.xml
+```
+
+-   ❌ Do not `import` reporter as `import SonarReporter from 'vitest-sonar-reporter';`
+-   ✅ Define reporter as `reporters: ['vitest-sonar-reporter']` so that `vitest` will process it. This quarantees support for projects without `{ type: 'module' }`.
+
+## Code Coverage
+
+This reporter does not process code coverage - Vitest already supports that out-of-the-box!
+
+Simply configure `vitest` to output LCOV reports and instruct SonarQube to pick these reports.
+
+```ts
+test: {
+    coverage: {
+        reporters: 'lcov',
+    },
+},
+```
+
+```
+sonar.javascript.lcov.reportPaths=./coverage/lcov.info
 ```
 
 ## Examples
@@ -107,26 +133,6 @@ describe('animals', () => {
     <testCase name="animals - flying ones - birds can fly" duration="5" />
   </file>
 </testExecutions>
-```
-
-## Troubleshooting
-
-1. > I'm seeing `Error [ERR_REQUIRE_ESM]: require() of ES Module` when importing the module. I cannot add `"type": "module"` to my `package.json`.
-
-This package is published as pure ESM package. It can still be used in commonjs projects by using [dynamic import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports). See [Vite | Async Config](https://vitejs.dev/config/#async-config) for Vite's configuration options.
-
-```ts
-// vite.config.ts
-export default defineConfig(async function () {
-    const { default: SonarReporter } = await import('vitest-sonar-reporter');
-
-    return {
-        test: {
-            reporters: new SonarReporter(),
-            outputFile: 'sonar-report.xml',
-        },
-    };
-});
 ```
 
 [version-badge]: https://img.shields.io/npm/v/vitest-sonar-reporter
