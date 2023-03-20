@@ -34,11 +34,11 @@
         "eslint-config-prettier": "^8.7.0",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-prettier": "^4.2.1",
-        "prettier": "^2.8.4",
+        "prettier": "^2.8.5",
         "publint": "^0.1.10",
         "typescript": "^5.0.2",
-        "vite": "^4.2.0",
-        "vitest": "^0.29.3"
+        "vite": "^4.2.1",
+        "vitest": "^0.29.5"
     },
     "peerDependencies": {
         "vitest": ">=0.18.0"
