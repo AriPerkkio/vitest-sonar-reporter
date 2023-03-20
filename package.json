@@ -13,7 +13,7 @@
     "engines": {
         "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
     },
-    "packageManager": "pnpm@7.29.3",
+    "packageManager": "pnpm@7.30.0",
     "homepage": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "bugs": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "repository": "https://github.com/AriPerkkio/vitest-sonar-reporter",
@@ -37,7 +37,7 @@
         "prettier": "^2.8.4",
         "publint": "^0.1.10",
         "typescript": "^4.9.5",
-        "vite": "^4.1.4",
+        "vite": "^4.2.0",
         "vitest": "^0.29.3"
     },
     "peerDependencies": {
