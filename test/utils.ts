@@ -40,6 +40,7 @@ export function stabilizeReport(report: string) {
         limitStacktraces,
         removeCwd,
         removeLineNumbers,
-        removeDurations
+        removeDurations,
+        (text) => text.trim()
     )(report);
 }

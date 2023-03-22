@@ -10,9 +10,13 @@ import { generateXml } from './xml.js';
 export default class SonarReporter implements Reporter {
     ctx!: Vitest;
     outputFile!: string;
+    silent!: boolean;
 
     onInit(ctx: Vitest) {
         this.ctx = ctx;
+
+        // @ts-expect-error -- untyped
+        this.silent = ctx.config.sonarReporterOptions?.silent === true;
 
         if (!this.ctx.config.outputFile) {
             throw new Error(
@@ -38,7 +42,10 @@ export default class SonarReporter implements Reporter {
         const sorted = files?.sort(sortByFilename);
 
         writeFileSync(reportFile, generateXml(sorted), 'utf-8');
-        this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
+
+        if (!this.silent) {
+            this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
+        }
     }
 }
 
