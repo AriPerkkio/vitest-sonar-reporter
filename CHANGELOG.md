@@ -1,3 +1,10 @@
+## [0.4.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.5...v0.4.0) (2023-03-22)
+
+
+### Features
+
+* option to silence logging ([10a756f](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/10a756fcb093b58585ca367479d1383fd6369aa8))
+
 ### [0.3.5](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.4...v0.3.5) (2023-02-23)
 
 
