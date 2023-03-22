@@ -60,6 +60,21 @@ sonar.testExecutionReportPaths=sonar-report.xml
 -   ❌ Do not `import` reporter as `import SonarReporter from 'vitest-sonar-reporter';`
 -   ✅ Define reporter as `reporters: ['vitest-sonar-reporter']` so that `vitest` will process it. This quarantees support for projects without `{ type: 'module' }`.
 
+### Options
+
+You can pass additional options using `test.sonarReporterOptions` in `vite.config.ts`. Note that passing custom options to Vitest reporters is unconventional and may require you to use `@ts-ignore` when using TypeScript.
+
+#### `silent`
+
+Silence reporter's verbose logging.
+
+```ts
+test: {
+    reporters: 'vitest-sonar-reporter',
+    sonarReporterOptions: { silent: true }
+}
+```
+
 ## Code Coverage
 
 This reporter does not process code coverage - Vitest already supports that out-of-the-box!

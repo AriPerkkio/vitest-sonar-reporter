@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
 import { existsSync, readFileSync, rmSync } from 'fs';
 import { beforeEach, expect, test } from 'vitest';
 import { stabilizeReport } from './utils';
@@ -7,18 +7,10 @@ import { outputFile } from './vite.test-config';
 
 beforeEach(cleanup);
 
-test('writes a report', () => {
+test('writes a report', async () => {
     expect(existsSync(outputFile)).toBe(false);
 
-    try {
-        // "vitest" binary should be available when run through package.json script
-        execSync('vitest --config test/vite.test-config.ts', {
-            stdio: 'inherit',
-        });
-    } catch (_) {
-        // Ignore exit codes
-    }
-
+    await runVitest();
     expect(existsSync(outputFile)).toBe(true);
 
     const contents = readFileSync(outputFile, 'utf-8');
@@ -70,6 +62,39 @@ test('writes a report', () => {
       </testExecutions>"
     `);
 });
+
+test('report location is logged', async () => {
+    const data = await runVitest();
+    expect(existsSync(outputFile)).toBe(true);
+
+    expect(stabilizeReport(data)).toMatchInlineSnapshot(
+        '"SonarQube report written to <process-cwd>/report-from-tests.xml"'
+    );
+});
+
+test('logging can be silenced', async () => {
+    const data = await runVitest({
+        env: { ...process.env, TEST_ARGS_SILENT: 1 },
+    });
+
+    expect(existsSync(outputFile)).toBe(true);
+    expect(data).toBe('');
+});
+
+async function runVitest(opts = {}) {
+    // "vitest" binary should be available when run through package.json script
+    const subprocess = exec('vitest --config test/vite.test-config.ts', opts);
+
+    let stdout = '';
+    subprocess.stdout?.on('data', (data) => (stdout += data.toString()));
+
+    await new Promise((resolve, reject) => {
+        subprocess.on('exit', resolve);
+        subprocess.stderr?.on('data', reject);
+    });
+
+    return stdout;
+}
 
 function cleanup() {
     if (existsSync(outputFile)) {
