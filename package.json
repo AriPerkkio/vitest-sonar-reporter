@@ -13,7 +13,7 @@
     "engines": {
         "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
     },
-    "packageManager": "pnpm@7.30.0",
+    "packageManager": "pnpm@7.30.3",
     "homepage": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "bugs": "https://github.com/AriPerkkio/vitest-sonar-reporter",
     "repository": "https://github.com/AriPerkkio/vitest-sonar-reporter",
@@ -27,14 +27,14 @@
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
     "devDependencies": {
-        "@types/node": "^18.15.5",
+        "@types/node": "^18.15.10",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
         "eslint": "^8.36.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-prettier": "^4.2.1",
-        "prettier": "^2.8.6",
+        "prettier": "^2.8.7",
         "publint": "^0.1.11",
         "typescript": "^5.0.2",
         "vite": "^4.2.1",
