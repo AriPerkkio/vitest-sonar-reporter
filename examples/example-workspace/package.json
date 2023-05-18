@@ -1,0 +1,14 @@
+{
+    "name": "example-workspace",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "test": "vitest run && vitest run --root ./report-test --config vitest.config.report.ts"
+    },
+    "devDependencies": {
+        "typescript": "latest",
+        "vite": "^3",
+        "vitest": "latest",
+        "vitest-sonar-reporter": "file:../../"
+    }
+}

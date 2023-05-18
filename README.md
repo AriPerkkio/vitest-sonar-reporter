@@ -95,6 +95,12 @@ sonar.javascript.lcov.reportPaths=./coverage/lcov.info
 
 ## Examples
 
+### Workspace
+
+See [examples/example-workspace](https://github.com/AriPerkkio/vitest-sonar-reporter/tree/main/examples/example-workspace) for example setup using [Vitest Workspaces](https://vitest.dev/guide/workspace.html).
+
+### Basic
+
 ```ts
 import { describe, expect, test } from 'vitest';
 
