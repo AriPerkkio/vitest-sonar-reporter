@@ -1,3 +1,10 @@
+### [0.4.1](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.4.0...v0.4.1) (2023-05-18)
+
+
+### Bug Fixes
+
+* workspace support ([c03f0a5](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/c03f0a57c1fc31217d8f05f8388e08938e1f939d))
+
 ## [0.4.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.3.5...v0.4.0) (2023-03-22)
 
 
