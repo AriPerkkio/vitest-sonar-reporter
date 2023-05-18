@@ -1,0 +1,8 @@
+{
+    "name": "example-workspace-shared",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "test": "vitest run"
+    }
+}
