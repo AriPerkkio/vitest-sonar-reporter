@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
-import { dirname, resolve } from 'path';
+import { dirname, relative, resolve } from 'path';
 import type { Reporter, File, Vitest } from 'vitest';
 
 import { generateXml } from './xml.js';
@@ -31,8 +31,14 @@ export default class SonarReporter implements Reporter {
         }
     }
 
-    onFinished(files?: File[]) {
+    onFinished(rawFiles?: File[]) {
         const reportFile = resolve(this.ctx.config.root, this.outputFile);
+
+        // Map filepaths to be relative to root for workspace support
+        const files = rawFiles?.map((file) => ({
+            ...file,
+            name: relative(process.cwd(), file.filepath),
+        }));
 
         const outputDirectory = dirname(reportFile);
         if (!existsSync(outputDirectory)) {
