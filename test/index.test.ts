@@ -1,5 +1,5 @@
-import { exec } from 'child_process';
-import { existsSync, readFileSync, rmSync } from 'fs';
+import { exec } from 'node:child_process';
+import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { beforeEach, expect, test } from 'vitest';
 import { stabilizeReport } from './utils';
 

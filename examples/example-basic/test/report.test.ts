@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import { expect, test } from 'vitest';
 
 import { stabilizeReport } from '../../../test/utils';

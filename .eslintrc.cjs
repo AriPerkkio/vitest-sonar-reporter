@@ -10,7 +10,7 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint'],
+    plugins: ['@typescript-eslint', 'unicorn'],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
@@ -18,6 +18,7 @@ module.exports = {
     ],
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
+        'unicorn/prefer-node-protocol': 'error',
     },
     overrides: [
         {
