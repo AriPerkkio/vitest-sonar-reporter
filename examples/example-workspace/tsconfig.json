@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["esnext"],
+        "moduleResolution": "node",
         "paths": {
             "@shared": ["./packages/shared/src/index.ts"]
         }
