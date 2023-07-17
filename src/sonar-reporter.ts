@@ -20,7 +20,7 @@ export default class SonarReporter implements Reporter {
 
         if (!this.ctx.config.outputFile) {
             throw new Error(
-                'SonarReporter requires config.outputFile to be defined in vite config'
+                'SonarReporter requires config.outputFile to be defined in vite config',
             );
         }
 
@@ -77,9 +77,9 @@ function resolveOutputfile(config: Vitest['config']) {
                     },
                 },
                 null,
-                2
+                2,
             ),
-        ].join('\n')
+        ].join('\n'),
     );
 }
 

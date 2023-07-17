@@ -22,7 +22,7 @@ function limitStacktraces(report: string) {
                 .concat(`${padding}<removed-stacktrace>`)
                 .concat(rows[rows.length - 1])
                 .join('\n');
-        }
+        },
     );
 }
 
@@ -31,7 +31,7 @@ function compose(
 ): (text: string) => string {
     return fns.reduceRight(
         (prevFn, nextFn) => (text: string) => nextFn(prevFn(text)),
-        (value) => value
+        (value) => value,
     );
 }
 
@@ -41,6 +41,6 @@ export function stabilizeReport(report: string) {
         removeCwd,
         removeLineNumbers,
         removeDurations,
-        (text) => text.trim()
+        (text) => text.trim(),
     )(report);
 }

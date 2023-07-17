@@ -68,7 +68,7 @@ test('report location is logged', async () => {
     expect(existsSync(outputFile)).toBe(true);
 
     expect(stabilizeReport(data)).toMatchInlineSnapshot(
-        '"SonarQube report written to <process-cwd>/report-from-tests.xml"'
+        '"SonarQube report written to <process-cwd>/report-from-tests.xml"',
     );
 });
 

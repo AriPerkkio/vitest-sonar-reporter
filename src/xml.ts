@@ -30,7 +30,7 @@ export function generateXml(files?: File[]) {
         NEWLINE,
         files?.map(generateFileElement).join(NEWLINE),
         NEWLINE,
-        '</testExecutions>'
+        '</testExecutions>',
     );
 }
 
@@ -42,7 +42,7 @@ function generateFileElement(file: File) {
         generateTestCases(file),
         NEWLINE,
         indent(1),
-        `</file>`
+        `</file>`,
     );
 }
 
@@ -57,7 +57,7 @@ function generateTestCaseElement(test: Test) {
         indent(2),
         '<testCase ',
         `name="${escapeXML(generateTestCaseName(test))}"`,
-        getDurationAttribute(test)
+        getDurationAttribute(test),
     );
 
     if (test.result?.state === 'fail') {
@@ -78,7 +78,7 @@ function generateTestCaseElement(test: Test) {
             `</${element}>`,
             NEWLINE,
             indent(2),
-            '</testCase>'
+            '</testCase>',
         );
     }
 
@@ -97,7 +97,7 @@ function generateTestCaseElement(test: Test) {
             `<skipped message="${escapeXML(test.name)}" />`,
             NEWLINE,
             indent(2),
-            '</testCase>'
+            '</testCase>',
         );
     }
 
