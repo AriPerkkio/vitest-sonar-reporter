@@ -6,7 +6,7 @@ export default defineConfig({
         name: 'client',
         alias: {
             '@shared': fileURLToPath(
-                new URL('../shared/src/index.ts', import.meta.url)
+                new URL('../shared/src/index.ts', import.meta.url),
             ),
         },
     },
