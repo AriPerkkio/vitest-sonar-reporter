@@ -27,19 +27,19 @@
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
     "devDependencies": {
-        "@types/node": "^20.5.1",
-        "@typescript-eslint/eslint-plugin": "^6.4.0",
-        "@typescript-eslint/parser": "^6.4.0",
-        "eslint": "^8.47.0",
+        "@types/node": "^20.5.6",
+        "@typescript-eslint/eslint-plugin": "^6.4.1",
+        "@typescript-eslint/parser": "^6.4.1",
+        "eslint": "^8.48.0",
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-import": "^2.28.1",
         "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-unicorn": "^48.0.1",
         "prettier": "^3.0.2",
-        "publint": "^0.2.1",
+        "publint": "^0.2.2",
         "typescript": "^5.1.6",
         "vite": "^4.4.9",
-        "vitest": "^0.34.2"
+        "vitest": "^0.34.3"
     },
     "peerDependencies": {
         "vitest": ">=0.18.0"
