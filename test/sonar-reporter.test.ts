@@ -47,9 +47,9 @@ test('throws when outputFile object is missing entry', () => {
       "Unable to resolve outputFile for vitest-sonar-reporter.
       Define outputFile as string or add entry for it:
       {
-        \\"test\\": {
-          \\"outputFile\\": {
-            \\"vitest-sonar-reporter\\": \\"sonar-report.xml\\"
+        "test": {
+          "outputFile": {
+            "vitest-sonar-reporter": "sonar-report.xml"
           }
         }
       }"
