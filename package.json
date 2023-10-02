@@ -27,7 +27,7 @@
         "validate": "pnpm build && pnpm lint && pnpm test run"
     },
     "devDependencies": {
-        "@types/node": "^20.7.1",
+        "@types/node": "^20.8.0",
         "@typescript-eslint/eslint-plugin": "^6.7.3",
         "@typescript-eslint/parser": "^6.7.3",
         "eslint": "^8.50.0",
