@@ -61,25 +61,29 @@ function generateTestCaseElement(test: Test) {
     );
 
     if (test.result?.state === 'fail') {
-        const element =
-            test.result.error?.name === 'AssertionError' ? 'failure' : 'error';
+        return parseErrors(test)
+            ?.map((error) => {
+                const element =
+                    error?.name === 'AssertionError' ? 'failure' : 'error';
 
-        return join(
-            start,
-            '>',
-            NEWLINE,
-            indent(3),
-            `<${element} message="${escapeXML(test.result.error?.message)}">`,
-            NEWLINE,
-            indent(4),
-            `<![CDATA[${escapeXML(test.result.error?.stack)}]]>`,
-            NEWLINE,
-            indent(3),
-            `</${element}>`,
-            NEWLINE,
-            indent(2),
-            '</testCase>',
-        );
+                return join(
+                    start,
+                    '>',
+                    NEWLINE,
+                    indent(3),
+                    `<${element} message="${escapeXML(error?.message)}">`,
+                    NEWLINE,
+                    indent(4),
+                    `<![CDATA[${escapeXML(error?.stack)}]]>`,
+                    NEWLINE,
+                    indent(3),
+                    `</${element}>`,
+                    NEWLINE,
+                    indent(2),
+                    '</testCase>',
+                );
+            })
+            .join(NEWLINE);
     }
 
     if (
@@ -142,4 +146,13 @@ function join(...lines: (string | undefined)[]) {
 
 function indent(level: number) {
     return '  '.repeat(level);
+}
+
+function parseErrors(test: Test) {
+    // Vitest v1-beta-02 and 0.x
+    if (test.result && 'error' in test.result)
+        return [test.result.error] as NonNullable<Test['result']>['errors'];
+
+    // Vitest v1-beta-03
+    return test.result?.errors;
 }
