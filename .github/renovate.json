@@ -22,6 +22,11 @@
             "enabled": false
         },
         {
+            "matchPackageNames": ["pnpm"],
+            "enabled": false,
+            "description": "Version 8.10.0 fails vitest-ecosystem-ci"
+        },
+        {
             "matchPackageNames": ["vitest-sonar-reporter"],
             "enabled": false,
             "description": "Local file links in examples"
