@@ -1,6 +1,7 @@
 # vitest-sonar-reporter
 
-[![Version][version-badge]][version-url]
+[![Version][version-badge]][npm-url]
+[![Downloads][downloads-url]][npm-url]
 [![Compatibility with vitest@latest][vitest-check-badge]][vitest-check-url]
 
 [Live examples](#live-examples) | [Installation](#installation) | [Configuration](#configuration) | [Code coverage](#code-coverage) | [Examples](#examples)
@@ -157,6 +158,7 @@ describe('animals', () => {
 ```
 
 [version-badge]: https://img.shields.io/npm/v/vitest-sonar-reporter
-[version-url]: https://www.npmjs.com/package/vitest-sonar-reporter
+[npm-url]: https://www.npmjs.com/package/vitest-sonar-reporter
+[downloads-url]: https://img.shields.io/npm/dm/vitest-sonar-reporter
 [vitest-check-badge]: https://github.com/ariperkkio/vitest-sonar-reporter/workflows/vitest@latest%20compatibility/badge.svg
 [vitest-check-url]: https://github.com/AriPerkkio/vitest-sonar-reporter/actions/workflows/vitest-latest-compatibility.yml
