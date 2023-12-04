@@ -1,3 +1,10 @@
+## [1.0.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.5.0...v1.0.0) (2023-12-04)
+
+
+### Features
+
+* prepare v1 release ([#136](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/136)) ([6a90437](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/6a90437dac20828d004bbe8ce6f86bbfc421304d))
+
 ## [0.5.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.4.1...v0.5.0) (2023-10-27)
 
 
