@@ -14,8 +14,9 @@ Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic
 
 ## Live examples
 
--   Project with `{ type: "module" }` | [Stackblitz](https://stackblitz.com/edit/vitest-dev-vitest-vrnysd)
--   Project with `{ type: "commonjs" }` | [Stackblitz](https://stackblitz.com/edit/vitest-dev-vitest-rdjupe)
+-   Project with [Vitest Workspaces](https://vitest.dev/guide/workspace.html) | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-workspaces)
+-   Project with `{ type: "module" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-esm)
+-   Project with `{ type: "commonjs" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-cjs)
 
 ## Installation
 
