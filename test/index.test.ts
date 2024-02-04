@@ -1,11 +1,15 @@
-import { exec } from 'node:child_process';
 import { existsSync, readFileSync, rmSync } from 'node:fs';
-import { beforeEach, expect, test } from 'vitest';
+import { beforeEach, expect, test, vi } from 'vitest';
+import { startVitest } from 'vitest/node';
 import { stabilizeReport } from './utils';
 
-import { outputFile } from './vite.test-config';
+const outputFile = 'report-from-tests.xml';
 
-beforeEach(cleanup);
+beforeEach(() => {
+    if (existsSync(outputFile)) {
+        rmSync(outputFile);
+    }
+});
 
 test('writes a report', async () => {
     expect(existsSync(outputFile)).toBe(false);
@@ -64,40 +68,34 @@ test('writes a report', async () => {
 });
 
 test('report location is logged', async () => {
-    const data = await runVitest();
+    const spy = vi.spyOn(console, 'log');
+    await runVitest();
+
     expect(existsSync(outputFile)).toBe(true);
 
-    expect(stabilizeReport(data)).toMatchInlineSnapshot(
+    const call = spy.mock.lastCall?.[0];
+    spy.mockRestore();
+
+    expect(stabilizeReport(call)).toMatchInlineSnapshot(
         '"SonarQube report written to <process-cwd>/report-from-tests.xml"',
     );
 });
 
 test('logging can be silenced', async () => {
-    const data = await runVitest({
-        env: { ...process.env, TEST_ARGS_SILENT: 1 },
-    });
+    const spy = vi.spyOn(console, 'log');
+    await runVitest({ sonarReporterOptions: { silent: true } });
 
     expect(existsSync(outputFile)).toBe(true);
-    expect(data).toBe('');
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
 });
 
 async function runVitest(opts = {}) {
-    // "vitest" binary should be available when run through package.json script
-    const subprocess = exec('vitest --config test/vite.test-config.ts', opts);
-
-    let stdout = '';
-    subprocess.stdout?.on('data', (data) => (stdout += data.toString()));
-
-    await new Promise((resolve, reject) => {
-        subprocess.on('exit', resolve);
-        subprocess.stderr?.on('data', reject);
+    await startVitest('test', [], {
+        watch: false,
+        reporters: new URL('../src/index.ts', import.meta.url).href,
+        outputFile,
+        include: ['test/fixtures/*.test.ts'],
+        ...opts,
     });
-
-    return stdout;
-}
-
-function cleanup() {
-    if (existsSync(outputFile)) {
-        rmSync(outputFile);
-    }
 }
