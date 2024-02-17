@@ -4,35 +4,55 @@ import type { Reporter, File, Vitest } from 'vitest';
 
 import { generateXml } from './xml.js';
 
+export interface SonarReporterOptions {
+    outputFile: string;
+    silent?: boolean;
+}
+
 /**
  * Reporter used by `vitest`
  */
 export default class SonarReporter implements Reporter {
     ctx!: Vitest;
-    outputFile!: string;
-    silent!: boolean;
+    options: SonarReporterOptions;
+
+    constructor(options?: Partial<SonarReporterOptions>) {
+        this.options = {
+            silent: options?.silent ?? false,
+
+            // @ts-expect-error -- Can also be initialized during onInit()
+            outputFile: options?.outputFile,
+        };
+    }
 
     onInit(ctx: Vitest) {
         this.ctx = ctx;
 
-        // @ts-expect-error -- untyped
-        this.silent = ctx.config.sonarReporterOptions?.silent === true;
+        this.options.silent =
+            this.options.silent ||
+            // TODO: Remove in v2.0.0
+            // @ts-expect-error -- untyped
+            ctx.config.sonarReporterOptions?.silent === true;
 
-        if (!this.ctx.config.outputFile) {
+        if (!this.ctx.config.outputFile && !this.options.outputFile) {
             throw new Error(
-                'SonarReporter requires config.outputFile to be defined in vite config',
+                'SonarReporter requires outputFile to be defined in config',
             );
         }
 
-        this.outputFile = resolveOutputfile(this.ctx.config);
+        this.options.outputFile =
+            this.options.outputFile ?? resolveOutputfile(this.ctx.config);
 
-        if (existsSync(this.outputFile)) {
-            rmSync(this.outputFile);
+        if (existsSync(this.options.outputFile)) {
+            rmSync(this.options.outputFile);
         }
     }
 
     onFinished(rawFiles?: File[]) {
-        const reportFile = resolve(this.ctx.config.root, this.outputFile);
+        const reportFile = resolve(
+            this.ctx.config.root,
+            this.options.outputFile,
+        );
 
         // Map filepaths to be relative to root for workspace support
         const files = rawFiles?.map((file) => ({
@@ -49,7 +69,7 @@ export default class SonarReporter implements Reporter {
 
         writeFileSync(reportFile, generateXml(sorted), 'utf-8');
 
-        if (!this.silent) {
+        if (!this.options.silent) {
             this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
         }
     }
@@ -67,13 +87,16 @@ function resolveOutputfile(config: Vitest['config']) {
     throw new Error(
         [
             'Unable to resolve outputFile for vitest-sonar-reporter.',
-            'Define outputFile as string or add entry for it:',
+            'Define outputFile in reporter options:',
             JSON.stringify(
                 {
                     test: {
-                        outputFile: {
-                            'vitest-sonar-reporter': 'sonar-report.xml',
-                        },
+                        reporters: [
+                            [
+                                'vitest-sonar-reporter',
+                                { outputFile: 'sonar-report.xml' },
+                            ],
+                        ],
                     },
                 },
                 null,

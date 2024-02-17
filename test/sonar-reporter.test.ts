@@ -7,7 +7,9 @@ test('resolves outputFile from string', () => {
 
     reporter.onInit(getConfig({ outputFile: 'test-report.xml' }));
 
-    expect(reporter.outputFile).toMatchInlineSnapshot('"test-report.xml"');
+    expect(reporter.options.outputFile).toMatchInlineSnapshot(
+        '"test-report.xml"',
+    );
 });
 
 test('resolves outputFile from object', () => {
@@ -21,7 +23,7 @@ test('resolves outputFile from object', () => {
         }),
     );
 
-    expect(reporter.outputFile).toMatchInlineSnapshot(
+    expect(reporter.options.outputFile).toMatchInlineSnapshot(
         '"test-report-from-object.xml"',
     );
 });
@@ -32,7 +34,7 @@ test('throws when outputFile is missing', () => {
     expect(() =>
         reporter.onInit(getConfig({ outputFile: undefined })),
     ).toThrowErrorMatchingInlineSnapshot(
-        `[Error: SonarReporter requires config.outputFile to be defined in vite config]`,
+        `[Error: SonarReporter requires outputFile to be defined in config]`,
     );
 });
 
@@ -45,14 +47,19 @@ test('throws when outputFile object is missing entry', () => {
         ),
     ).toThrowErrorMatchingInlineSnapshot(`
       [Error: Unable to resolve outputFile for vitest-sonar-reporter.
-Define outputFile as string or add entry for it:
-{
-  "test": {
-    "outputFile": {
-      "vitest-sonar-reporter": "sonar-report.xml"
-    }
-  }
-}]
+      Define outputFile in reporter options:
+      {
+        "test": {
+          "reporters": [
+            [
+              "vitest-sonar-reporter",
+              {
+                "outputFile": "sonar-report.xml"
+              }
+            ]
+          ]
+        }
+      }]
     `);
 });
 
