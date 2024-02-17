@@ -4,6 +4,7 @@ import { startVitest } from 'vitest/node';
 import { stabilizeReport } from './utils';
 
 const outputFile = 'report-from-tests.xml';
+const reporterPath = new URL('../src/index.ts', import.meta.url).href;
 
 beforeEach(() => {
     if (existsSync(outputFile)) {
@@ -81,21 +82,33 @@ test('report location is logged', async () => {
     );
 });
 
-test('logging can be silenced', async () => {
+test('logging can be silenced, legacy config', async () => {
     const spy = vi.spyOn(console, 'log');
-    await runVitest({ sonarReporterOptions: { silent: true } });
+    await runVitest({ config: { sonarReporterOptions: { silent: true } } });
 
     expect(existsSync(outputFile)).toBe(true);
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
 });
 
-async function runVitest(opts = {}) {
+test('logging can be silenced via options', async () => {
+    const spy = vi.spyOn(console, 'log');
+    await runVitest({ reporterOptions: { silent: true } });
+
+    expect(existsSync(outputFile)).toBe(true);
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
+});
+
+async function runVitest(options?: {
+    reporterOptions?: Record<string, unknown>;
+    config?: Record<string, unknown>;
+}) {
     await startVitest('test', [], {
         watch: false,
-        reporters: new URL('../src/index.ts', import.meta.url).href,
+        reporters: [[reporterPath, options?.reporterOptions || {}]],
         outputFile,
         include: ['test/fixtures/*.test.ts'],
-        ...opts,
+        ...options?.config,
     });
 }

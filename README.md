@@ -35,13 +35,14 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
     test: {
-        reporters: 'vitest-sonar-reporter',
-        outputFile: 'sonar-report.xml',
+        reporters: [
+            ['vitest-sonar-reporter', { outputFile: 'sonar-report.xml' }],
+        ],
     },
 });
 ```
 
-If you have multiple outputFile's defined, add one for `vitest-sonar-reporter`:
+If you are using Vitest below version `^1.3.0` you can define file in `test.outputFile`:
 
 ```ts
 test: {
@@ -64,7 +65,7 @@ sonar.testExecutionReportPaths=sonar-report.xml
 
 ### Options
 
-You can pass additional options using `test.sonarReporterOptions` in `vite.config.ts`. Note that passing custom options to Vitest reporters is unconventional and may require you to use `@ts-ignore` when using TypeScript.
+You can pass additional options to reporter. Note that this requires `vitest@^1.3.0`.
 
 #### `silent`
 
@@ -72,8 +73,9 @@ Silence reporter's verbose logging.
 
 ```ts
 test: {
-    reporters: 'vitest-sonar-reporter',
-    sonarReporterOptions: { silent: true }
+    reporters: [
+        ['vitest-sonar-reporter', { silent: true }]
+    ],
 }
 ```
 
