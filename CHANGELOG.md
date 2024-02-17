@@ -1,3 +1,11 @@
+## [1.1.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v1.0.0...v1.1.0) (2024-02-17)
+
+
+### Features
+
+* support `onWritePath` option ([#154](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/154)) ([998f5db](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/998f5db0415e52b233a4d141327ef3375d1512e5))
+* support custom options ([#160](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/160)) ([7159d2e](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/7159d2e80291a42f96c50a64fbc014bcb1f1e35f))
+
 ## [1.0.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v0.5.0...v1.0.0) (2023-12-04)
 
 
