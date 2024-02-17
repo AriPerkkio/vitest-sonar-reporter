@@ -7,6 +7,7 @@ import { generateXml } from './xml.js';
 export interface SonarReporterOptions {
     outputFile: string;
     silent?: boolean;
+    onWritePath: (path: string) => string;
 }
 
 /**
@@ -19,6 +20,7 @@ export default class SonarReporter implements Reporter {
     constructor(options?: Partial<SonarReporterOptions>) {
         this.options = {
             silent: options?.silent ?? false,
+            onWritePath: options?.onWritePath ?? defaultOnWritePath,
 
             // @ts-expect-error -- Can also be initialized during onInit()
             outputFile: options?.outputFile,
@@ -57,7 +59,9 @@ export default class SonarReporter implements Reporter {
         // Map filepaths to be relative to root for workspace support
         const files = rawFiles?.map((file) => ({
             ...file,
-            name: relative(process.cwd(), file.filepath),
+            name: this.options.onWritePath(
+                relative(process.cwd(), file.filepath),
+            ),
         }));
 
         const outputDirectory = dirname(reportFile);
@@ -73,6 +77,10 @@ export default class SonarReporter implements Reporter {
             this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
         }
     }
+}
+
+function defaultOnWritePath(path: string) {
+    return path;
 }
 
 function resolveOutputfile(config: Vitest['config']) {

@@ -79,6 +79,45 @@ test: {
 }
 ```
 
+#### `onWritePath`
+
+Rewrite `path` attribute of `<file>`. This can be useful when you need to change relative paths of the files.
+
+```ts
+test: {
+    reporters: [
+        ['vitest-sonar-reporter', {
+            onWritePath(path: string) {
+                // Prefix all paths with root directory
+                // e.g. '<file path="test/math.ts">' to '<file path="frontend/test/math.ts">'
+                return `frontend/${path}`;
+            }
+        }]
+    ],
+}
+```
+
+```diff
+<testExecutions version="1">
+-  <file path="test/math.ts">
++  <file path="frontend/test/math.ts">
+    <testCase name="multiply" duration="123" />
+  </file>
+</testExecutions>
+```
+
+#### `outputFile`
+
+Location for the report.
+
+```ts
+test: {
+    reporters: [
+        ['vitest-sonar-reporter', { outputFile: 'sonar-report.xml' }]
+    ],
+}
+```
+
 ## Code Coverage
 
 This reporter does not process code coverage - Vitest already supports that out-of-the-box!
