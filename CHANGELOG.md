@@ -1,3 +1,14 @@
+## [2.0.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v1.1.0...v2.0.0) (2024-02-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove `sonarReporterOptions.silent` option (#165)
+
+### Bug Fixes
+
+* remove `sonarReporterOptions.silent` option ([#165](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/165)) ([32857ec](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/32857ec35d2237235e9aa00803bd9a9efa7b8caf))
+
 ## [1.1.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v1.0.0...v1.1.0) (2024-02-17)
 
 
