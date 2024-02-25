@@ -30,12 +30,6 @@ export default class SonarReporter implements Reporter {
     onInit(ctx: Vitest) {
         this.ctx = ctx;
 
-        this.options.silent =
-            this.options.silent ||
-            // TODO: Remove in v2.0.0
-            // @ts-expect-error -- untyped
-            ctx.config.sonarReporterOptions?.silent === true;
-
         if (!this.ctx.config.outputFile && !this.options.outputFile) {
             throw new Error(
                 'SonarReporter requires outputFile to be defined in config',
