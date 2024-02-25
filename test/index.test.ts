@@ -141,15 +141,6 @@ test('report location is logged', async () => {
     );
 });
 
-test('logging can be silenced, legacy config', async () => {
-    const spy = vi.spyOn(console, 'log');
-    await runVitest({ config: { sonarReporterOptions: { silent: true } } });
-
-    expect(existsSync(outputFile)).toBe(true);
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
-});
-
 test('logging can be silenced via options', async () => {
     const spy = vi.spyOn(console, 'log');
     await runVitest({ reporterOptions: { silent: true } });
