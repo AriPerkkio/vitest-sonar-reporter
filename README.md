@@ -36,6 +36,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
     test: {
         reporters: [
+            'default', // Vitest's default reporter so that terminal output is still visible
             ['vitest-sonar-reporter', { outputFile: 'sonar-report.xml' }],
         ],
     },
@@ -59,9 +60,6 @@ Instruct SonarQube to pick report in your [`sonar-project.properties`](https://d
 ```
 sonar.testExecutionReportPaths=sonar-report.xml
 ```
-
--   ❌ Do not `import` reporter as `import SonarReporter from 'vitest-sonar-reporter';`
--   ✅ Define reporter as `reporters: ['vitest-sonar-reporter']` so that `vitest` will process it. This quarantees support for projects without `{ type: 'module' }`.
 
 ### Options
 
