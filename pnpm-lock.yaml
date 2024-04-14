@@ -5,15 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@eslint/eslintrc':
+    specifier: ^3.0.2
+    version: 3.0.2
+  '@eslint/js':
+    specifier: ^9.0.0
+    version: 9.0.0
+  '@types/eslint':
+    specifier: ^8.56.9
+    version: 8.56.9
   '@types/node':
     specifier: ^20.12.7
     version: 20.12.7
-  '@typescript-eslint/eslint-plugin':
-    specifier: ^7.6.0
-    version: 7.6.0(@typescript-eslint/parser@7.6.0)(eslint@9.0.0)(typescript@5.4.5)
-  '@typescript-eslint/parser':
-    specifier: ^7.6.0
-    version: 7.6.0(eslint@9.0.0)(typescript@5.4.5)
   eslint:
     specifier: ^9.0.0
     version: 9.0.0
@@ -25,7 +28,7 @@ devDependencies:
     version: 2.29.1(@typescript-eslint/parser@7.6.0)(eslint@9.0.0)
   eslint-plugin-prettier:
     specifier: ^5.1.3
-    version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@9.0.0)(prettier@3.2.5)
+    version: 5.1.3(@types/eslint@8.56.9)(eslint-config-prettier@9.1.0)(eslint@9.0.0)(prettier@3.2.5)
   eslint-plugin-unicorn:
     specifier: ^52.0.0
     version: 52.0.0(eslint@9.0.0)
@@ -38,6 +41,9 @@ devDependencies:
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
+  typescript-eslint:
+    specifier: ^7.6.0
+    version: 7.6.0(eslint@9.0.0)(typescript@5.4.5)
   vite:
     specifier: ^5.2.8
     version: 5.2.8(@types/node@20.12.7)
@@ -504,6 +510,13 @@ packages:
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
+    dev: true
+
+  /@types/eslint@8.56.9:
+    resolution: {integrity: sha512-W4W3KcqzjJ0sHg2vAq9vfml6OhsJ53TcUjUqfzzZf/EChUtwspszj/S0pzMxnfRcO55/iGq47dscXw71Fxc4Zg==}
+    dependencies:
+      '@types/estree': 1.0.5
+      '@types/json-schema': 7.0.15
     dev: true
 
   /@types/estree@1.0.5:
@@ -1308,7 +1321,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0)(eslint@9.0.0)(prettier@3.2.5):
+  /eslint-plugin-prettier@5.1.3(@types/eslint@8.56.9)(eslint-config-prettier@9.1.0)(eslint@9.0.0)(prettier@3.2.5):
     resolution: {integrity: sha512-C9GCVAs4Eq7ZC/XFQHITLiHJxQngdtraXaM+LoUFoFp/lHNl2Zn8f3WQbe9HvTBBQ9YnKFB0/2Ajdqwo5D1EAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -1322,6 +1335,7 @@ packages:
       eslint-config-prettier:
         optional: true
     dependencies:
+      '@types/eslint': 8.56.9
       eslint: 9.0.0
       eslint-config-prettier: 9.1.0(eslint@9.0.0)
       prettier: 3.2.5
@@ -2948,6 +2962,25 @@ packages:
       call-bind: 1.0.2
       for-each: 0.3.3
       is-typed-array: 1.1.12
+    dev: true
+
+  /typescript-eslint@7.6.0(eslint@9.0.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-LY6vH6F1l5jpGqRtU+uK4+mOecIb4Cd4kaz1hAiJrgnNiHUA8wiw8BkJyYS+MRLM69F1QuSKwtGlQqnGl1Rc6w==}
+    engines: {node: ^18.18.0 || >=20.0.0}
+    peerDependencies:
+      eslint: ^8.56.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 7.6.0(@typescript-eslint/parser@7.6.0)(eslint@9.0.0)(typescript@5.4.5)
+      '@typescript-eslint/parser': 7.6.0(eslint@9.0.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.6.0(eslint@9.0.0)(typescript@5.4.5)
+      eslint: 9.0.0
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /typescript@5.4.5:
