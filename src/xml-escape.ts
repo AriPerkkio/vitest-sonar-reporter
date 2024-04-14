@@ -30,7 +30,7 @@ const PATTERN_DISCOURAGED_XML_TO_REMOVE = new RegExp(
     'g',
 );
 
-export function escapeXML(value: any): string {
+export function escapeXML(value: unknown): string {
     const text = String(value);
 
     const escaped = text
