@@ -128,12 +128,12 @@ test('file path can be rewritten using options.onWritePath ', async () => {
 });
 
 test('report location is logged', async () => {
-    const spy = vi.spyOn(console, 'log');
+    const spy = vi.spyOn(process.stdout, 'write');
     await runVitest();
 
     expect(existsSync(outputFile)).toBe(true);
 
-    const call = spy.mock.lastCall?.[0];
+    const call = spy.mock.lastCall![0].toString();
     spy.mockRestore();
 
     expect(stabilizeReport(call)).toMatchInlineSnapshot(
