@@ -111,6 +111,7 @@ function generateTestCaseElement(test: Test) {
 function getAllTests(task: Task): Test[] {
     const tests: Test[] = [];
 
+    // @ts-expect-error -- Vitest v2 only
     if (task.type === 'custom') {
         return tests;
     }
