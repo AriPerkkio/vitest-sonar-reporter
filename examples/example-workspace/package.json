@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "typescript": "latest",
-        "vite": "^3.1",
+        "vite": "latest",
         "vitest": "latest",
         "vitest-sonar-reporter": "file:../../"
     }
