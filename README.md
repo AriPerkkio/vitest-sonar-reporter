@@ -10,7 +10,7 @@
 
 > [SonarQube](https://docs.sonarqube.org/) reporter for [Vitest](https://vitest.dev/)
 
-Generates [Generic Execution](https://docs.sonarqube.org/latest/analysis/generic-test/#header-2) reports from `vitest` tests for SonarQube to analyze.
+Generates [Generic Execution](https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/test-coverage/generic-test-data/#generic-test-execution) reports from `vitest` tests for SonarQube to analyze.
 
 ## Live examples
 
@@ -171,6 +171,7 @@ describe('animals', () => {
 ```
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="test/animals.test.ts">
     <testCase name="animals - dogs say woof" duration="2" />

@@ -12,7 +12,8 @@ test('report matches snapshot', () => {
     const report = stabilizeReport(output);
 
     expect(report).toMatchInlineSnapshot(`
-      "<testExecutions version="1">
+      "<?xml version="1.0" encoding="UTF-8"?>
+      <testExecutions version="1">
         <file path="test/math.test.ts">
           <testCase name="math - sum" duration="123" />
           <testCase name="math - multiply" duration="123" />
