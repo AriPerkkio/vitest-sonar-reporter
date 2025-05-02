@@ -8,6 +8,7 @@ const NEWLINE = '\n';
  * Generate XML. Reference:
  *
  * ```xml
+ * <?xml version="1.0" encoding="UTF-8"?>
  * <testExecutions version="1">
  *   <file path="testx/ClassOneTest.xoo">
  *     <testCase name="test1" duration="5"/>
@@ -26,6 +27,8 @@ const NEWLINE = '\n';
  */
 export function generateXml(files?: File[]) {
     return join(
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        NEWLINE,
         '<testExecutions version="1">',
         NEWLINE,
         files?.map(generateFileElement).join(NEWLINE),

@@ -22,7 +22,8 @@ test('writes a report', async () => {
     const stable = stabilizeReport(contents);
 
     expect(stable).toMatchInlineSnapshot(`
-      "<testExecutions version="1">
+      "<?xml version="1.0" encoding="UTF-8"?>
+      <testExecutions version="1">
         <file path="test/fixtures/animals.test.ts">
           <testCase name="animals - dogs say woof" duration="123" />
           <testCase name="animals - figure out what rabbits say" duration="123">
@@ -81,7 +82,8 @@ test('file path can be rewritten using options.onWritePath ', async () => {
     const stable = stabilizeReport(contents);
 
     expect(stable).toMatchInlineSnapshot(`
-      "<testExecutions version="1">
+      "<?xml version="1.0" encoding="UTF-8"?>
+      <testExecutions version="1">
         <file path="custom-prefix/test/fixtures/animals.test.ts">
           <testCase name="animals - dogs say woof" duration="123" />
           <testCase name="animals - figure out what rabbits say" duration="123">

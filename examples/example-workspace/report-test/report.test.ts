@@ -17,7 +17,8 @@ test('report matches snapshot', () => {
     const report = stabilizeReport(output);
 
     expect(report).toMatchInlineSnapshot(`
-      "<testExecutions version="1">
+      "<?xml version="1.0" encoding="UTF-8"?>
+      <testExecutions version="1">
         <file path="packages/client/test/render-user.test.ts">
           <testCase name="renderUser - renders user" duration="123" />
         </file>
