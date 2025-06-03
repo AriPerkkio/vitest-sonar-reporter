@@ -39,9 +39,9 @@
         "prettier": "^3.5.3",
         "publint": "^0.3.12",
         "typescript": "^5.8.3",
-        "typescript-eslint": "^8.33.0",
+        "typescript-eslint": "^8.33.1",
         "vite": "^6.3.5",
-        "vitest": "^3.1.4"
+        "vitest": "^3.2.0"
     },
     "peerDependencies": {
         "vitest": ">=1"
