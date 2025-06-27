@@ -1,8 +1,10 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, relative, resolve } from 'node:path';
-import type { Reporter, File, Vitest } from 'vitest';
+import type { Reporter, Vitest } from 'vitest/node';
 
 import { generateXml } from './xml.js';
+
+type File = Parameters<NonNullable<Reporter['onFinished']>>[0][number];
 
 export interface SonarReporterOptions {
     outputFile: string;

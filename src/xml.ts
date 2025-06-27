@@ -1,4 +1,8 @@
-import type { File, Task, Test } from 'vitest';
+import type { Reporter } from 'vitest/node';
+
+type File = Parameters<NonNullable<Reporter['onFinished']>>[0][number];
+type Task = File['tasks'][number];
+type Test = Task & { type: 'test' };
 
 import { escapeXML } from './xml-escape.js';
 
