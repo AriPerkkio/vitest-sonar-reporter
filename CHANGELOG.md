@@ -1,3 +1,4 @@
+## [2.0.3](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.2...v2.0.3) (2025-08-05)
 ## [2.0.2](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.1...v2.0.2) (2025-08-05)
 
 ### Bug Fixes
