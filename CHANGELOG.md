@@ -1,3 +1,8 @@
+## [2.0.2](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.1...v2.0.2) (2025-08-05)
+
+### Bug Fixes
+
+* support Vitest 4 types ([#265](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/265)) ([bc58db4](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/bc58db4ec6d7f0cdae6bfbf73438d310cf863a30))
 ## [2.0.1](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.0...v2.0.1) (2025-05-02)
 
 ### Bug Fixes
