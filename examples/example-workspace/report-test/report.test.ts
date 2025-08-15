@@ -3,20 +3,20 @@
  * They are here to test the report generation.
  */
 
-import { existsSync, readFileSync } from 'node:fs';
-import { expect, test } from 'vitest';
+import { existsSync, readFileSync } from "node:fs";
+import { expect, test } from "vitest";
 
-import { stabilizeReport } from '../../../test/utils';
+import { stabilizeReport } from "../../../test/utils";
 
-test('report exists', () => {
-    expect(existsSync('./sonar-report.xml')).toBe(true);
+test("report exists", () => {
+  expect(existsSync("./sonar-report.xml")).toBe(true);
 });
 
-test('report matches snapshot', () => {
-    const output = readFileSync('./sonar-report.xml', 'utf8');
-    const report = stabilizeReport(output);
+test("report matches snapshot", () => {
+  const output = readFileSync("./sonar-report.xml", "utf8");
+  const report = stabilizeReport(output);
 
-    expect(report).toMatchInlineSnapshot(`
+  expect(report).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
       <testExecutions version="1">
         <file path="packages/client/test/render-user.test.ts">

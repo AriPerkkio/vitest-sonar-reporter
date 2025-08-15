@@ -1,27 +1,27 @@
-import { existsSync, readFileSync, rmSync } from 'node:fs';
-import { beforeEach, expect, test, vi } from 'vitest';
-import { startVitest } from 'vitest/node';
-import { stabilizeReport } from './utils';
+import { existsSync, readFileSync, rmSync } from "node:fs";
+import { beforeEach, expect, test, vi } from "vitest";
+import { startVitest } from "vitest/node";
+import { stabilizeReport } from "./utils";
 
-const outputFile = 'report-from-tests.xml';
-const reporterPath = new URL('../src/index.ts', import.meta.url).href;
+const outputFile = "report-from-tests.xml";
+const reporterPath = new URL("../src/index.ts", import.meta.url).href;
 
 beforeEach(() => {
-    if (existsSync(outputFile)) {
-        rmSync(outputFile);
-    }
+  if (existsSync(outputFile)) {
+    rmSync(outputFile);
+  }
 });
 
-test('writes a report', async () => {
-    expect(existsSync(outputFile)).toBe(false);
+test("writes a report", async () => {
+  expect(existsSync(outputFile)).toBe(false);
 
-    await runVitest();
-    expect(existsSync(outputFile)).toBe(true);
+  await runVitest();
+  expect(existsSync(outputFile)).toBe(true);
 
-    const contents = readFileSync(outputFile, 'utf-8');
-    const stable = stabilizeReport(contents);
+  const contents = readFileSync(outputFile, "utf-8");
+  const stable = stabilizeReport(contents);
 
-    expect(stable).toMatchInlineSnapshot(`
+  expect(stable).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
       <testExecutions version="1">
         <file path="test/fixtures/animals.test.ts">
@@ -69,19 +69,19 @@ test('writes a report', async () => {
     `);
 });
 
-test('file path can be rewritten using options.onWritePath ', async () => {
-    await runVitest({
-        reporterOptions: {
-            onWritePath(path: string) {
-                return `custom-prefix/${path}`;
-            },
-        },
-    });
+test("file path can be rewritten using options.onWritePath ", async () => {
+  await runVitest({
+    reporterOptions: {
+      onWritePath(path: string) {
+        return `custom-prefix/${path}`;
+      },
+    },
+  });
 
-    const contents = readFileSync(outputFile, 'utf-8');
-    const stable = stabilizeReport(contents);
+  const contents = readFileSync(outputFile, "utf-8");
+  const stable = stabilizeReport(contents);
 
-    expect(stable).toMatchInlineSnapshot(`
+  expect(stable).toMatchInlineSnapshot(`
       "<?xml version="1.0" encoding="UTF-8"?>
       <testExecutions version="1">
         <file path="custom-prefix/test/fixtures/animals.test.ts">
@@ -129,38 +129,38 @@ test('file path can be rewritten using options.onWritePath ', async () => {
     `);
 });
 
-test('report location is logged', async () => {
-    const spy = vi.spyOn(process.stdout, 'write');
-    await runVitest();
+test("report location is logged", async () => {
+  const spy = vi.spyOn(process.stdout, "write");
+  await runVitest();
 
-    expect(existsSync(outputFile)).toBe(true);
+  expect(existsSync(outputFile)).toBe(true);
 
-    const call = spy.mock.lastCall![0].toString();
-    spy.mockRestore();
+  const call = spy.mock.lastCall![0].toString();
+  spy.mockRestore();
 
-    expect(stabilizeReport(call)).toMatchInlineSnapshot(
-        '"SonarQube report written to <process-cwd>/report-from-tests.xml"',
-    );
+  expect(stabilizeReport(call)).toMatchInlineSnapshot(
+    '"SonarQube report written to <process-cwd>/report-from-tests.xml"',
+  );
 });
 
-test('logging can be silenced via options', async () => {
-    const spy = vi.spyOn(console, 'log');
-    await runVitest({ reporterOptions: { silent: true } });
+test("logging can be silenced via options", async () => {
+  const spy = vi.spyOn(console, "log");
+  await runVitest({ reporterOptions: { silent: true } });
 
-    expect(existsSync(outputFile)).toBe(true);
-    expect(spy).not.toHaveBeenCalled();
-    spy.mockRestore();
+  expect(existsSync(outputFile)).toBe(true);
+  expect(spy).not.toHaveBeenCalled();
+  spy.mockRestore();
 });
 
 async function runVitest(options?: {
-    reporterOptions?: Record<string, unknown>;
-    config?: Record<string, unknown>;
+  reporterOptions?: Record<string, unknown>;
+  config?: Record<string, unknown>;
 }) {
-    await startVitest('test', [], {
-        watch: false,
-        reporters: [[reporterPath, options?.reporterOptions || {}]],
-        outputFile,
-        include: ['test/fixtures/*.test.ts'],
-        ...options?.config,
-    });
+  await startVitest("test", [], {
+    watch: false,
+    reporters: [[reporterPath, options?.reporterOptions || {}]],
+    outputFile,
+    include: ["test/fixtures/*.test.ts"],
+    ...options?.config,
+  });
 }

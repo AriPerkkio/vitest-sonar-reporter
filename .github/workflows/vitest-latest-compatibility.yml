@@ -1,55 +1,55 @@
 name: vitest@latest compatibility
 
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch: # Manual triggers
-    schedule:
-        # Every night at 00:00
-        - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Manual triggers
+  schedule:
+    # Every night at 00:00
+    - cron: "0 0 * * *"
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Install pnpm
-              uses: pnpm/action-setup@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
-            - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-and-cache
 
-            - name: Install
-              run: pnpm install
+      - name: Install
+        run: pnpm install
 
-            - name: Install vitest@latest
-              run: pnpm install --save-dev vitest@latest
+      - name: Install vitest@latest
+        run: pnpm install --save-dev vitest@latest
 
-            - name: Build
-              run: pnpm build
+      - name: Build
+        run: pnpm build
 
-            - name: Lint
-              run: pnpm lint
+      - name: Lint
+        run: pnpm lint
 
-            - name: Test
-              run: pnpm test
+      - name: Test
+        run: pnpm test
 
-    examples:
-        needs: build
-        runs-on: ubuntu-latest
+  examples:
+    needs: build
+    runs-on: ubuntu-latest
 
-        strategy:
-            fail-fast: false
-            matrix:
-                node-version: [20, 22, 24]
-                example-name: [example-basic, example-workspace]
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 22, 24]
+        example-name: [example-basic, example-workspace]
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - uses: ./.github/actions/run-example
-              with:
-                  example-name: ${{ matrix.example-name }}
-                  node-version: ${{ matrix.node-version }}
+      - uses: ./.github/actions/run-example
+        with:
+          example-name: ${{ matrix.example-name }}
+          node-version: ${{ matrix.node-version }}

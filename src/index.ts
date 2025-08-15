@@ -1,1 +1,1 @@
-export { default } from './sonar-reporter.js';
+export { default } from "./sonar-reporter.js";

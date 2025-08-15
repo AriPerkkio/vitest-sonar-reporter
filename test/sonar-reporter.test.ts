@@ -1,51 +1,49 @@
-import { expect, test, Vitest } from 'vitest';
+import { expect, test, Vitest } from "vitest";
 
-import SonarReporter from '../src/sonar-reporter';
+import SonarReporter from "../src/sonar-reporter";
 
-test('resolves outputFile from string', () => {
-    const reporter = new SonarReporter();
+test("resolves outputFile from string", () => {
+  const reporter = new SonarReporter();
 
-    reporter.onInit(getConfig({ outputFile: 'test-report.xml' }));
+  reporter.onInit(getConfig({ outputFile: "test-report.xml" }));
 
-    expect(reporter.options.outputFile).toMatchInlineSnapshot(
-        '"test-report.xml"',
-    );
+  expect(reporter.options.outputFile).toMatchInlineSnapshot(
+    '"test-report.xml"',
+  );
 });
 
-test('resolves outputFile from object', () => {
-    const reporter = new SonarReporter();
+test("resolves outputFile from object", () => {
+  const reporter = new SonarReporter();
 
-    reporter.onInit(
-        getConfig({
-            outputFile: {
-                'vitest-sonar-reporter': 'test-report-from-object.xml',
-            },
-        }),
-    );
+  reporter.onInit(
+    getConfig({
+      outputFile: {
+        "vitest-sonar-reporter": "test-report-from-object.xml",
+      },
+    }),
+  );
 
-    expect(reporter.options.outputFile).toMatchInlineSnapshot(
-        '"test-report-from-object.xml"',
-    );
+  expect(reporter.options.outputFile).toMatchInlineSnapshot(
+    '"test-report-from-object.xml"',
+  );
 });
 
-test('throws when outputFile is missing', () => {
-    const reporter = new SonarReporter();
+test("throws when outputFile is missing", () => {
+  const reporter = new SonarReporter();
 
-    expect(() =>
-        reporter.onInit(getConfig({ outputFile: undefined })),
-    ).toThrowErrorMatchingInlineSnapshot(
-        `[Error: SonarReporter requires outputFile to be defined in config]`,
-    );
+  expect(() =>
+    reporter.onInit(getConfig({ outputFile: undefined })),
+  ).toThrowErrorMatchingInlineSnapshot(
+    `[Error: SonarReporter requires outputFile to be defined in config]`,
+  );
 });
 
-test('throws when outputFile object is missing entry', () => {
-    const reporter = new SonarReporter();
+test("throws when outputFile object is missing entry", () => {
+  const reporter = new SonarReporter();
 
-    expect(() =>
-        reporter.onInit(
-            getConfig({ outputFile: { json: 'json-report.json' } }),
-        ),
-    ).toThrowErrorMatchingInlineSnapshot(`
+  expect(() =>
+    reporter.onInit(getConfig({ outputFile: { json: "json-report.json" } })),
+  ).toThrowErrorMatchingInlineSnapshot(`
       [Error: Unable to resolve outputFile for vitest-sonar-reporter.
       Define outputFile in reporter options:
       {
@@ -63,6 +61,6 @@ test('throws when outputFile object is missing entry', () => {
     `);
 });
 
-function getConfig(config: Partial<Vitest['config']>): Vitest {
-    return { config } as Vitest; // Trick tsc since all we need is config
+function getConfig(config: Partial<Vitest["config"]>): Vitest {
+  return { config } as Vitest; // Trick tsc since all we need is config
 }

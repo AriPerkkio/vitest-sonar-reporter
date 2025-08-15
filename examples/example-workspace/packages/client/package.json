@@ -1,8 +1,8 @@
 {
-    "name": "example-workspace-client",
-    "type": "module",
-    "private": true,
-    "scripts": {
-        "test": "vitest run"
-    }
+  "name": "example-workspace-client",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  }
 }
