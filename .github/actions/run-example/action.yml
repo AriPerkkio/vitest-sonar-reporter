@@ -5,10 +5,13 @@ inputs:
   example-name:
     required: true
     description: "Name of the example project"
-
   node-version:
     required: true
     description: "Node version for setup-node"
+  vitest-version:
+    required: true
+    description: "Vitest version to use"
+
 runs:
   using: "composite"
   steps:
@@ -25,9 +28,10 @@ runs:
         pnpm install
         pnpm build
 
-    - name: Run ${{ inputs.example-name }}
+    - name: Run ${{ inputs.example-name }} with vitest@${{ inputs.vitest-version }}
       working-directory: ./examples/${{ inputs.example-name }}
       shell: bash
       run: |
         pnpm install
+        pnpm install -D vitest@${{ inputs.vitest-version }}
         pnpm test
