@@ -1,19 +1,19 @@
 function add(a: number, b: number) {
-    return a + b;
+  return a + b;
 }
 
 function multiply(a: number, b: number) {
-    return a * b;
+  return a * b;
 }
 
-export default function math(a: number, b: number, operator: '*' | '+') {
-    if (operator === '*') {
-        return multiply(a, b);
-    }
+export default function math(a: number, b: number, operator: "*" | "+") {
+  if (operator === "*") {
+    return multiply(a, b);
+  }
 
-    if (operator === '+') {
-        return add(a, b);
-    }
+  if (operator === "+") {
+    return add(a, b);
+  }
 
-    throw new Error('Unsupported operator');
+  throw new Error("Unsupported operator");
 }

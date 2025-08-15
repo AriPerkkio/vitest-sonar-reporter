@@ -1,14 +1,14 @@
 {
-    "name": "example-basic",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "test": "vitest run && vitest run --config vitest.config.report.ts"
-    },
-    "devDependencies": {
-        "typescript": "latest",
-        "vite": "latest",
-        "vitest": "latest",
-        "vitest-sonar-reporter": "file:../../"
-    }
+  "name": "example-basic",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run && vitest run --config vitest.config.report.ts"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest",
+    "vitest-sonar-reporter": "file:../../"
+  }
 }

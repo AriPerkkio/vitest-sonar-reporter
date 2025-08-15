@@ -1,9 +1,9 @@
-import { parseName } from '@shared';
+import { parseName } from "@shared";
 
 export function renderUser(userName: string) {
-    const { first, last } = parseName(userName);
+  const { first, last } = parseName(userName);
 
-    return `
+  return `
       <div class="user">
         <span class="firstname">${first}</span>
         <span class="lastname">${last}</span>

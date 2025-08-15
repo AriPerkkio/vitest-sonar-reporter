@@ -1,23 +1,23 @@
-name: 'Setup-node and cache'
-description: 'Base setup for each action'
-author: 'AriPerkkio'
+name: "Setup-node and cache"
+description: "Base setup for each action"
+author: "AriPerkkio"
 inputs:
-    node-version:
-        required: false
-        description: 'Node version for setup-node'
-        default: '20'
+  node-version:
+    required: false
+    description: "Node version for setup-node"
+    default: "20"
 runs:
-    using: 'composite'
-    steps:
-        - uses: actions/setup-node@v4
-          with:
-              node-version: ${{ inputs.node-version }}
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
 
-        - uses: actions/cache@v4
-          with:
-              path: |
-                  ~/.pnpm-store
-                  **/node_modules
-              key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-              restore-keys: |
-                  ${{ runner.os }}
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/.pnpm-store
+          **/node_modules
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}

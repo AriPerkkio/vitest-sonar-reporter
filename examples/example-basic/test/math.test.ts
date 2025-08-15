@@ -1,13 +1,13 @@
-import { test, expect, describe } from 'vitest';
+import { test, expect, describe } from "vitest";
 
-import math from '../src/math';
+import math from "../src/math";
 
-describe('math', () => {
-    test('sum', () => {
-        expect(math(5, 7, '+')).toBe(12);
-    });
+describe("math", () => {
+  test("sum", () => {
+    expect(math(5, 7, "+")).toBe(12);
+  });
 
-    test('multiply', () => {
-        expect(math(5, 2, '*')).toBe(10);
-    });
+  test("multiply", () => {
+    expect(math(5, 2, "*")).toBe(10);
+  });
 });

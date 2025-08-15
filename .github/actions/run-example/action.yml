@@ -1,33 +1,33 @@
-name: 'Run Example'
-description: 'Run example projects'
-author: 'AriPerkkio'
+name: "Run Example"
+description: "Run example projects"
+author: "AriPerkkio"
 inputs:
-    example-name:
-        required: true
-        description: 'Name of the example project'
+  example-name:
+    required: true
+    description: "Name of the example project"
 
-    node-version:
-        required: true
-        description: 'Node version for setup-node'
+  node-version:
+    required: true
+    description: "Node version for setup-node"
 runs:
-    using: 'composite'
-    steps:
-        - name: Install pnpm
-          uses: pnpm/action-setup@v2
+  using: "composite"
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
 
-        - uses: ./.github/actions/setup-and-cache
-          with:
-              node-version: ${{ inputs.node-version }}
+    - uses: ./.github/actions/setup-and-cache
+      with:
+        node-version: ${{ inputs.node-version }}
 
-        - name: Install & Build
-          shell: bash
-          run: |
-              pnpm install
-              pnpm build
+    - name: Install & Build
+      shell: bash
+      run: |
+        pnpm install
+        pnpm build
 
-        - name: Run ${{ inputs.example-name }}
-          working-directory: ./examples/${{ inputs.example-name }}
-          shell: bash
-          run: |
-              pnpm install
-              pnpm test
+    - name: Run ${{ inputs.example-name }}
+      working-directory: ./examples/${{ inputs.example-name }}
+      shell: bash
+      run: |
+        pnpm install
+        pnpm test
