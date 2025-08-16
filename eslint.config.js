@@ -41,6 +41,12 @@ export default defineConfig([
       "@typescript-eslint/no-unsafe-assignment": "off",
     },
   },
+  {
+    files: ["examples/**"],
+    rules: {
+      "@typescript-eslint/ban-ts-comment": "off",
+    },
+  },
   { ignores: ["dist", ".eslintrc.cjs"] },
   eslintPluginPrettierRecommended,
 ]);
