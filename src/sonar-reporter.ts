@@ -1,10 +1,8 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
-import type { Reporter, Vitest } from "vitest/node";
+import type { Reporter, TestModule, Vitest } from "vitest/node";
 
-import { generateXml } from "./xml.js";
-
-type File = Parameters<NonNullable<Reporter["onFinished"]>>[0][number];
+import { generateXml, TestFile } from "./xml.js";
 
 export interface SonarReporterOptions {
   outputFile: string;
@@ -46,21 +44,28 @@ export default class SonarReporter implements Reporter {
     }
   }
 
-  onFinished(rawFiles?: File[]) {
+  onTestRunEnd(testModules: ReadonlyArray<TestModule>) {
     const reportFile = resolve(this.ctx.config.root, this.options.outputFile);
 
-    // Map filepaths to be relative to root for workspace support
-    const files = rawFiles?.map((file) => ({
-      ...file,
-      name: this.options.onWritePath(relative(process.cwd(), file.filepath)),
-    }));
+    const files: TestFile[] = [];
+
+    for (const testModule of testModules) {
+      files.push({
+        tests: Array.from(testModule.children.allTests()),
+
+        // Map filepaths to be relative to root for workspace support
+        path: this.options.onWritePath(
+          relative(process.cwd(), testModule.moduleId),
+        ),
+      });
+    }
 
     const outputDirectory = dirname(reportFile);
     if (!existsSync(outputDirectory)) {
       mkdirSync(outputDirectory, { recursive: true });
     }
 
-    const sorted = files?.sort(sortByFilename);
+    const sorted = files.sort(sortByPath);
 
     writeFileSync(reportFile, generateXml(sorted), "utf-8");
 
@@ -102,9 +107,9 @@ function resolveOutputfile(config: Vitest["config"]) {
   );
 }
 
-function sortByFilename(a: File, b: File): -1 | 0 | 1 {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
+function sortByPath(a: TestFile, b: TestFile): -1 | 0 | 1 {
+  if (a.path < b.path) return -1;
+  if (a.path > b.path) return 1;
 
   return 0;
 }

@@ -6,5 +6,8 @@ export default defineConfig({
     outputFile: {
       "vitest-sonar-reporter": "./sonar-report.xml",
     },
+
+    // @ts-ignore -- may fail when testing older Vitest versions
+    projects: ["packages/*"],
   },
 });
