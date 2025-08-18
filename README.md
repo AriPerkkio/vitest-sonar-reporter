@@ -23,7 +23,11 @@ Generates [Generic Execution](https://docs.sonarsource.com/sonarqube-server/late
 `vitest-sonar-reporter` should be included in development dependencies. `vitest` is required as peer dependency.
 
 ```sh
+# For Vitest v3 and above
 npm install --save-dev vitest-sonar-reporter
+
+# For Vitest v1 and v2
+npm install --save-dev vitest-sonar-reporter@2
 ```
 
 ## Configuration

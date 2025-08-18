@@ -1,10 +1,11 @@
-import type { Reporter } from "vitest/node";
-
-type File = Parameters<NonNullable<Reporter["onFinished"]>>[0][number];
-type Task = File["tasks"][number];
-type Test = Task & { type: "test" };
+import type { TestCase, TestSuite } from "vitest/node";
 
 import { escapeXML } from "./xml-escape.js";
+
+export interface TestFile {
+  path: string;
+  tests: TestCase[];
+}
 
 const NEWLINE = "\n";
 
@@ -29,37 +30,35 @@ const NEWLINE = "\n";
  * </testExecutions>
  * ```
  */
-export function generateXml(files?: File[]) {
+export function generateXml(files: TestFile[]) {
   return join(
     '<?xml version="1.0" encoding="UTF-8"?>',
     NEWLINE,
     '<testExecutions version="1">',
     NEWLINE,
-    files?.map(generateFileElement).join(NEWLINE),
+    files.map(generateFileElement).join(NEWLINE),
     NEWLINE,
     "</testExecutions>",
   );
 }
 
-function generateFileElement(file: File) {
+function generateFileElement(file: TestFile) {
   return join(
     indent(1),
-    `<file path="${escapeXML(file.name)}">`,
+    `<file path="${escapeXML(file.path)}">`,
     NEWLINE,
-    generateTestCases(file),
+    generateTestCases(file.tests),
     NEWLINE,
     indent(1),
     `</file>`,
   );
 }
 
-function generateTestCases(file: File) {
-  const tests = file.tasks.map(getAllTests).flat();
-
+function generateTestCases(tests: TestCase[]) {
   return tests.map(generateTestCaseElement).join(NEWLINE);
 }
 
-function generateTestCaseElement(test: Test) {
+function generateTestCaseElement(test: TestCase) {
   const start = join(
     indent(2),
     "<testCase ",
@@ -67,9 +66,11 @@ function generateTestCaseElement(test: Test) {
     getDurationAttribute(test),
   );
 
-  if (test.result?.state === "fail") {
-    return parseErrors(test)
-      ?.map((error) => {
+  const { state, errors } = test.result();
+
+  if (state === "failed") {
+    return errors
+      .map((error) => {
         const element = error?.name === "AssertionError" ? "failure" : "error";
 
         return join(
@@ -92,13 +93,7 @@ function generateTestCaseElement(test: Test) {
       .join(NEWLINE);
   }
 
-  if (
-    test.mode === "skip" ||
-    test.mode === "todo" ||
-    // These might work in future?
-    test.result?.state === "skip" ||
-    test.result?.state === "todo"
-  ) {
+  if (state === "skipped") {
     return join(
       start,
       ">",
@@ -114,23 +109,8 @@ function generateTestCaseElement(test: Test) {
   return join(start, " />");
 }
 
-function getAllTests(task: Task): Test[] {
-  const tests: Test[] = [];
-
-  // @ts-expect-error -- Vitest v2 only
-  if (task.type === "custom") {
-    return tests;
-  }
-
-  if (task.type === "test") {
-    return [...tests, task];
-  }
-
-  return [...tests, ...task.tasks.map(getAllTests).flat()];
-}
-
-function getDurationAttribute(test: Test): string {
-  const duration = test.result?.duration;
+function getDurationAttribute(test: TestCase): string {
+  const duration = test.diagnostic()?.duration;
 
   if (typeof duration !== "number") {
     return ` duration="0"`;
@@ -139,12 +119,12 @@ function getDurationAttribute(test: Test): string {
   return ` duration="${Math.round(duration)}"`;
 }
 
-function generateTestCaseName(task: Task): string {
-  if (task.suite && task.suite.name) {
-    return `${generateTestCaseName(task.suite)} - ${task.name}`;
+function generateTestCaseName(entity: TestCase | TestSuite): string {
+  if (entity.parent && entity.parent.type === "suite" && entity.parent.name) {
+    return `${generateTestCaseName(entity.parent)} - ${entity.name}`;
   }
 
-  return task.name;
+  return entity.name;
 }
 
 function join(...lines: (string | undefined)[]) {
@@ -153,13 +133,4 @@ function join(...lines: (string | undefined)[]) {
 
 function indent(level: number) {
   return "  ".repeat(level);
-}
-
-function parseErrors(test: Test) {
-  // Vitest v1-beta-02 and 0.x
-  if (test.result && "error" in test.result)
-    return [test.result.error] as NonNullable<Test["result"]>["errors"];
-
-  // Vitest v1-beta-03
-  return test.result?.errors;
 }
