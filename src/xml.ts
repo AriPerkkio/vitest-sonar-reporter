@@ -2,7 +2,6 @@ import type { TestCase, TestSuite } from "vitest/node";
 
 import { escapeXML } from "./xml-escape.js";
 
-/** Local version of TestModule with additional custom properties */
 export interface TestFile {
   path: string;
   tests: TestCase[];
