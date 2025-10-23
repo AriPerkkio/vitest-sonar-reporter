@@ -1,3 +1,12 @@
+## [3.0.0](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.4...v3.0.0) (2025-10-23)
+
+### ⚠ BREAKING CHANGES
+
+* use new Vitest reporter APIs (#278)
+
+### Features
+
+* use new Vitest reporter APIs ([#278](https://github.com/AriPerkkio/vitest-sonar-reporter/issues/278)) ([deb1af6](https://github.com/AriPerkkio/vitest-sonar-reporter/commit/deb1af6cd7ae3b6c4d4ed19333d979fe7d4622b7))
 ## [2.0.4](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.3...v2.0.4) (2025-08-05)
 ## [2.0.3](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.2...v2.0.3) (2025-08-05)
 ## [2.0.2](https://github.com/AriPerkkio/vitest-sonar-reporter/compare/v2.0.1...v2.0.2) (2025-08-05)
