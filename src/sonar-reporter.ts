@@ -44,7 +44,7 @@ export default class SonarReporter implements Reporter {
     }
   }
 
-  onTestRunEnd(testModules: ReadonlyArray<TestModule>) {
+  async onTestRunEnd(testModules: ReadonlyArray<TestModule>) {
     const reportFile = resolve(this.ctx.config.root, this.options.outputFile);
 
     const files: TestFile[] = [];
@@ -62,12 +62,12 @@ export default class SonarReporter implements Reporter {
 
     const outputDirectory = dirname(reportFile);
     if (!existsSync(outputDirectory)) {
-      mkdirSync(outputDirectory, { recursive: true });
+      await mkdirSync(outputDirectory, { recursive: true });
     }
 
     const sorted = files.sort(sortByPath);
 
-    writeFileSync(reportFile, generateXml(sorted), "utf-8");
+    await writeFileSync(reportFile, generateXml(sorted), "utf-8");
 
     if (!this.options.silent) {
       this.ctx.logger.log(`SonarQube report written to ${reportFile}`);
