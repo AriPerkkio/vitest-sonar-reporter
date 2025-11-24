@@ -17,7 +17,7 @@ jobs:
         node-version: [20, 22, 24]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -49,7 +49,7 @@ jobs:
         example-name: [example-basic, example-workspace]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Example ${{ matrix.example-name }} with vitest@${{ matrix.vitest-version }} and Node v${{ matrix.node-version }}
         uses: ./.github/actions/run-example
