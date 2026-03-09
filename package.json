@@ -30,11 +30,11 @@
     "validate": "pnpm build && pnpm lint && pnpm test run"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.4",
+    "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^25.3.3",
-    "eslint": "^10.0.2",
+    "@types/node": "^25.3.5",
+    "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.5",
