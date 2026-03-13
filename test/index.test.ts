@@ -158,6 +158,7 @@ async function runVitest(options?: {
 }) {
   await startVitest("test", [], {
     watch: false,
+    config: false,
     reporters: [[reporterPath, options?.reporterOptions || {}]],
     outputFile,
     include: ["test/fixtures/*.test.ts"],

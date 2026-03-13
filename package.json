@@ -26,14 +26,16 @@
     "build": "tsc --project tsconfig.prod.json",
     "start": "vitest --update",
     "lint": "eslint . --max-warnings 0 && publint",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "validate": "pnpm build && pnpm lint && pnpm test run"
+    "validate": "pnpm build && pnpm lint && pnpm typecheck && pnpm test run"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@types/eslint": "^9.6.1",
     "@types/node": "^25.3.5",
+    "@vitest/coverage-v8": "4.1.0",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
@@ -44,7 +46,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   },
   "peerDependencies": {
     "vitest": ">=3"

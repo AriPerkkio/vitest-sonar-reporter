@@ -5,3 +5,4 @@ examples/**/.gitignore
 examples/**/pnpm-lock.yaml
 examples/**/sonar-report.xml
 build.tgz
+coverage
