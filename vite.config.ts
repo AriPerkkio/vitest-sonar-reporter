@@ -1,10 +1,17 @@
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  server: { watch: { ignored: ["report-from-tests.xml"] } },
+
   test: {
-    reporters: "verbose",
     include: ["test/*.test.ts"],
-    watchExclude: ["report-from-tests.xml"],
+    reporters: "verbose",
+
+    coverage: {
+      enabled: true,
+      include: ["src/**"],
+    },
+
     onConsoleLog(log) {
       if (log.includes("SonarQube report written to")) {
         return false;

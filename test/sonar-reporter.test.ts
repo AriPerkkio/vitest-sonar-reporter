@@ -1,4 +1,5 @@
-import { expect, test, Vitest } from "vitest";
+import { expect, test } from "vitest";
+import { type Vitest } from "vitest/node";
 
 import SonarReporter from "../src/sonar-reporter";
 
