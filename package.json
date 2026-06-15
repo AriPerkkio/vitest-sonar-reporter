@@ -40,7 +40,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-unicorn": "^65.0.1",
+    "eslint-plugin-unicorn": "^66.0.0",
     "prettier": "^3.8.4",
     "publint": "^0.3.21",
     "typescript": "^5.9.3",
