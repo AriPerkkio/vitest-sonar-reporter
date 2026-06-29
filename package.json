@@ -43,7 +43,7 @@
     "eslint-plugin-unicorn": "^65.0.1",
     "prettier": "^3.9.1",
     "publint": "^0.3.21",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.62.0",
     "vite": "^8.1.0",
     "vitest": "^4.1.9"
