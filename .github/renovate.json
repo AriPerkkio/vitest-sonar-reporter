@@ -18,6 +18,12 @@
       "description": "Typescript does not follow semver. Minor versions can introduce breaking changes."
     },
     {
+      "matchUpdateTypes": ["major"],
+      "groupName": "vitest",
+      "matchPackagePatterns": ["^@vitest", "^vitest"],
+      "description": "Vitest majors"
+    },
+    {
       "depTypeList": ["peerDependencies", "engines"],
       "enabled": false
     },
