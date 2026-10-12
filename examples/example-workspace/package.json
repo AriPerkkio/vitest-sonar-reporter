@@ -1,7 +1,7 @@
 {
   "name": "example-workspace",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "test": "vitest run && vitest run --root ./report-test --config vitest.config.report.ts"
   },

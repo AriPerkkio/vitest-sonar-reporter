@@ -11,24 +11,19 @@ function removeLineNumbers(report: string) {
 }
 
 function limitStacktraces(report: string) {
-  return report.replace(
-    /<(failure|error).*>(\S|\s)*?<\/(failure|error)>/g,
-    (stacktrace) => {
-      const rows = stacktrace.split("\n");
-      const padding = rows[2].match(/\s*/)?.pop();
+  return report.replace(/<(failure|error).*>(\S|\s)*?<\/(failure|error)>/g, (stacktrace) => {
+    const rows = stacktrace.split("\n");
+    const padding = rows[2].match(/\s*/)?.pop();
 
-      return rows
-        .slice(0, 3)
-        .concat(`${padding}<removed-stacktrace>`)
-        .concat(rows[rows.length - 1])
-        .join("\n");
-    },
-  );
+    return rows
+      .slice(0, 3)
+      .concat(`${padding}<removed-stacktrace>`)
+      .concat(rows[rows.length - 1])
+      .join("\n");
+  });
 }
 
-function compose(
-  ...fns: ((text: string) => string)[]
-): (text: string) => string {
+function compose(...fns: ((text: string) => string)[]): (text: string) => string {
   return fns.reduceRight(
     (prevFn, nextFn) => (text: string) => nextFn(prevFn(text)),
     (value) => value,
@@ -36,11 +31,7 @@ function compose(
 }
 
 export function stabilizeReport(report: string) {
-  return compose(
-    limitStacktraces,
-    removeCwd,
-    removeLineNumbers,
-    removeDurations,
-    (text) => text.trim(),
+  return compose(limitStacktraces, removeCwd, removeLineNumbers, removeDurations, (text) =>
+    text.trim(),
   )(report);
 }

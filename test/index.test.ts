@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, rmSync } from "node:fs";
+
 import { beforeEach, expect, test, vi } from "vitest";
 import { startVitest } from "vitest/node";
+
 import { stabilizeReport } from "./utils";
 
 const outputFile = "report-from-tests.xml";

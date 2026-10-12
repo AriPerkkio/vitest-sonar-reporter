@@ -14,9 +14,9 @@ Generates [Generic Execution](https://docs.sonarsource.com/sonarqube-server/late
 
 ## Live examples
 
--   Project with [Vitest Workspaces](https://vitest.dev/guide/workspace.html) | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-workspaces)
--   Project with `{ type: "module" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-esm)
--   Project with `{ type: "commonjs" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-cjs)
+- Project with [Vitest Workspaces](https://vitest.dev/guide/workspace.html) | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-workspaces)
+- Project with `{ type: "module" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-esm)
+- Project with `{ type: "commonjs" }` | [Stackblitz](https://stackblitz.com/edit/vitest-sonar-reporter-cjs)
 
 ## Installation
 
@@ -35,15 +35,15 @@ npm install --save-dev vitest-sonar-reporter@2
 Add new custom reporter and define `outputFile` in your [`vite.config.ts`](https://vitest.dev/config/):
 
 ```ts
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-    test: {
-        reporters: [
-            'default', // Vitest's default reporter so that terminal output is still visible
-            ['vitest-sonar-reporter', { outputFile: 'sonar-report.xml' }],
-        ],
-    },
+  test: {
+    reporters: [
+      "default", // Vitest's default reporter so that terminal output is still visible
+      ["vitest-sonar-reporter", { outputFile: "sonar-report.xml" }],
+    ],
+  },
 });
 ```
 
@@ -147,30 +147,30 @@ See [examples/example-workspace](https://github.com/AriPerkkio/vitest-sonar-repo
 ### Basic
 
 ```ts
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test } from "vitest";
 
-describe('animals', () => {
-    test('dogs say woof', () => {
-        const dog = { say: () => 'woof' };
-        expect(dog.say()).toBe('woof');
+describe("animals", () => {
+  test("dogs say woof", () => {
+    const dog = { say: () => "woof" };
+    expect(dog.say()).toBe("woof");
+  });
+
+  test.todo("figure out what rabbits say", () => {
+    const rabbit = { say: () => "????" };
+    expect(rabbit.say()).toBe("?");
+  });
+
+  describe("flying ones", () => {
+    test("cats can fly", () => {
+      const cat = { fly: () => false };
+      expect(cat.fly()).toBe(true);
     });
 
-    test.todo('figure out what rabbits say', () => {
-        const rabbit = { say: () => '????' };
-        expect(rabbit.say()).toBe('?');
+    test("birds can fly", () => {
+      const bird = { fly: () => true };
+      expect(bird.fly()).toBe(true);
     });
-
-    describe('flying ones', () => {
-        test('cats can fly', () => {
-            const cat = { fly: () => false };
-            expect(cat.fly()).toBe(true);
-        });
-
-        test('birds can fly', () => {
-            const bird = { fly: () => true };
-            expect(bird.fly()).toBe(true);
-        });
-    });
+  });
 });
 ```
 

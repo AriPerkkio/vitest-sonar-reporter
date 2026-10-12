@@ -31,6 +31,9 @@ jobs:
           pnpm install
           pnpm build
 
+      - name: Format
+        run: pnpm fmt --check
+
       - name: Lint
         run: pnpm lint
 

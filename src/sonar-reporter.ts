@@ -1,8 +1,10 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
+
 import type { Reporter, TestModule, Vitest } from "vitest/node";
 
-import { generateXml, TestFile } from "./xml.js";
+import type { TestFile } from "./xml.js";
+import { generateXml } from "./xml.js";
 
 export interface SonarReporterOptions {
   outputFile: string;
@@ -31,13 +33,10 @@ export default class SonarReporter implements Reporter {
     this.ctx = ctx;
 
     if (!this.ctx.config.outputFile && !this.options.outputFile) {
-      throw new Error(
-        "SonarReporter requires outputFile to be defined in config",
-      );
+      throw new Error("SonarReporter requires outputFile to be defined in config");
     }
 
-    this.options.outputFile =
-      this.options.outputFile ?? resolveOutputfile(this.ctx.config);
+    this.options.outputFile = this.options.outputFile ?? resolveOutputfile(this.ctx.config);
 
     if (existsSync(this.options.outputFile)) {
       rmSync(this.options.outputFile);
@@ -54,9 +53,7 @@ export default class SonarReporter implements Reporter {
         tests: Array.from(testModule.children.allTests()),
 
         // Map filepaths to be relative to root for workspace support
-        path: this.options.onWritePath(
-          relative(process.cwd(), testModule.moduleId),
-        ),
+        path: this.options.onWritePath(relative(process.cwd(), testModule.moduleId)),
       });
     }
 
@@ -95,9 +92,7 @@ function resolveOutputfile(config: Vitest["config"]) {
       JSON.stringify(
         {
           test: {
-            reporters: [
-              ["vitest-sonar-reporter", { outputFile: "sonar-report.xml" }],
-            ],
+            reporters: [["vitest-sonar-reporter", { outputFile: "sonar-report.xml" }]],
           },
         },
         null,
