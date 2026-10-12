@@ -8,9 +8,7 @@ test("resolves outputFile from string", () => {
 
   reporter.onInit(getConfig({ outputFile: "test-report.xml" }));
 
-  expect(reporter.options.outputFile).toMatchInlineSnapshot(
-    '"test-report.xml"',
-  );
+  expect(reporter.options.outputFile).toMatchInlineSnapshot('"test-report.xml"');
 });
 
 test("resolves outputFile from object", () => {
@@ -24,9 +22,7 @@ test("resolves outputFile from object", () => {
     }),
   );
 
-  expect(reporter.options.outputFile).toMatchInlineSnapshot(
-    '"test-report-from-object.xml"',
-  );
+  expect(reporter.options.outputFile).toMatchInlineSnapshot('"test-report-from-object.xml"');
 });
 
 test("throws when outputFile is missing", () => {
@@ -42,9 +38,8 @@ test("throws when outputFile is missing", () => {
 test("throws when outputFile object is missing entry", () => {
   const reporter = new SonarReporter();
 
-  expect(() =>
-    reporter.onInit(getConfig({ outputFile: { json: "json-report.json" } })),
-  ).toThrowErrorMatchingInlineSnapshot(`
+  expect(() => reporter.onInit(getConfig({ outputFile: { json: "json-report.json" } })))
+    .toThrowErrorMatchingInlineSnapshot(`
       [Error: Unable to resolve outputFile for vitest-sonar-reporter.
       Define outputFile in reporter options:
       {
