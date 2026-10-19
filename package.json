@@ -35,14 +35,14 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
-    "@vitest/coverage-v8": "5.0.3",
-    "oxfmt": "^0.72.0",
-    "oxlint": "^1.87.0",
+    "@vitest/coverage-v8": "5.0.5",
+    "oxfmt": "^0.73.0",
+    "oxlint": "^1.88.0",
     "oxlint-tsgolint": "^7.0.2004",
     "publint": "^0.3.25",
     "typescript": "^5.9.3",
     "vite": "^8.3.4",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.5"
   },
   "peerDependencies": {
     "vitest": ">=3"
